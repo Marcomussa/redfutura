@@ -10306,7 +10306,7 @@ blockquote footer {
   max-height: 100%;
 }
 .btn.btn-base-color {
-  background-color: var(--base-color);
+  background-color: var(--dark-gray);
   color: var(--white);
 }
 .btn.btn-base-color:hover, .btn.btn-base-color:active {
@@ -19231,4 +19231,15 @@ footer .footer-navbar .nav-item:last-child a {
 }
 .footer-demo img {
   max-height: 55px !important;
+}
+
+.sidebar-admin {
+  border-right: 2px solid white
+}
+.adminContainer {
+  padding: 60px;
+}
+.adminLinks {
+  display: inline-block;
+  margin-bottom: 10px;
 }

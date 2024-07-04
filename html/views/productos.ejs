@@ -1,0 +1,63 @@
+<!doctype html>
+<html class="no-js" lang="es">
+    <head>
+        <title>Red Futura | Admin - Productos</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="ThemeZaa">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <meta name="description" content="">
+        <!-- favicon icon -->
+        <link rel="shortcut icon" href="images/favicon.png">
+        <link rel="apple-touch-icon" href="images/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+        <!-- google fonts preconnect -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- style sheets and font icons  -->
+        <link rel="stylesheet" href="../css/vendors.min.css"/>
+        <link rel="stylesheet" href="../css/icon.min.css"/>
+        <link rel="stylesheet" href="../css/style.css"/>
+        <link rel="stylesheet" href="../css/responsive.css"/>
+        <link rel="stylesheet" href="../demos/conference/conference.css" />
+    </head>
+    <body data-mobile-nav-style="classic" class="bg-midnight-blue">  
+        
+        <%- include('adminNav.ejs') %>
+
+        <section>
+            <div class="container adminContainer" style="max-width: 100% !important">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 class="text-white">Red Futura | Productos</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <input class="input-name bg-transparent border-color-transparent-white-light w-50" type="text" name="email" placeholder="Buscar Producto" />
+                        <button class="btn btn-medium btn-base-color btn-hover-animation btn-round-edge btn-box-shadow " type="submit">
+                            <span> 
+                                <span class="btn-text">Crear Nuevo Producto</span> 
+                                <span class="btn-icon"><i class="fa-solid fa-arrow-right"></i></span> 
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 sidebar-admin text-white">
+                        <a href="/admin/productos" class="fs-28 adminLinks">Productos</a>
+                        
+                        <a href="/admin/proveedores" class="fs-28 adminLinks">Proveedores</a>
+                        
+                        <a href="/admin/integrantes" class="fs-28 adminLinks" >Integrantes</a>
+                    </div>
+                    <div class="col-md-10 list-admin">
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        <script type="text/javascript" src="../js/jquery.js"></script>
+        <script type="text/javascript" src="../js/vendors.min.js"></script>
+        <script type="text/javascript" src="../js/main.js"></script>
+    </body>
+</html>
