@@ -9,7 +9,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.18.0",
     "method-override": "^3.0.0",
-    "nodemon": "^3.1.4",
+    "mongoose": "^8.4.5",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0"
   },
@@ -30,5 +30,8 @@
     "url": "https://github.com/Marcomussa/redfutura/issues"
   },
   "homepage": "https://github.com/Marcomussa/redfutura#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
 }
