@@ -7008,9 +7008,7 @@ header .navbar-brand .alt-logo, header .navbar-brand .mobile-logo {
   opacity: 0;
   width: 0;
 }
-header .navbar-brand img {
-  max-height: 46px;
-}
+
 header .header-top-bar {
   position: fixed;
   top: 0;
@@ -10306,7 +10304,7 @@ blockquote footer {
   max-height: 100%;
 }
 .btn.btn-base-color {
-  background-color: var(--dark-gray);
+  background-color: var(--base-color);
   color: var(--white);
 }
 .btn.btn-base-color:hover, .btn.btn-base-color:active {

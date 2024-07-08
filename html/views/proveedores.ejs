@@ -29,13 +29,37 @@
         <section>
             <div class="container adminContainer" style="max-width: 100% !important">
                 <div class="row">
-                    <h3 class="text-white">Panel de Administrador de Red Futura - Proveedores</h3>
+                    <div class="col-md-5">
+                        <h3 class="text-white">Admin Panel</h3>
+                    </div>
+                    <div class="col-md-7 d-flex flex-wrap">
+                        <div class="w-50">
+                            <input class="input-name bg-transparent border-color-transparent-white-light w-70" type="text" name="email" placeholder="Buscar Proveedores" />
+                            <button class="btn btn-medium btn-base-color btn-hover-animation btn-round-edge btn-box-shadow " type="submit">
+                                <i class="bi bi-search text-white"></i>
+                            </button>    
+                        </div>
+                        <div class="w-50 text-end">
+                            <button class="btn btn-medium btn-base-color btn-hover-animation btn-round-edge btn-box-shadow " type="submit">
+                                <span> 
+                                    <span class="btn-text">Crear Nuevo Proveedor</span> 
+                                    <span class="btn-icon"><i class="fa-solid fa-arrow-right"></i></span> 
+                                </span>
+                            </button>
+                            <button class="btn btn-medium btn-base-color btn-hover-animation btn-round-edge btn-box-shadow " type="submit">
+                                <span> 
+                                    <span class="btn-text">Importar Masivamente</span> 
+                                    <span class="btn-icon"><i class="fa-solid fa-arrow-right"></i></span> 
+                                </span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
+                <div class="row mt-30px">
                     <div class="col-md-2 sidebar-admin text-white">
                         <a href="/admin/productos" class="fs-28 adminLinks">Productos</a>
                         
-                        <a href="/admin/proveedores" class="fs-28 adminLinks">Proveedores</a>
+                        <a href="/admin/proveedores" class="fs-28 adminLinks text-base-color fw-600">Proveedores</a>
                         
                         <a href="/admin/integrantes" class="fs-28 adminLinks" >Integrantes</a>
                     </div>
