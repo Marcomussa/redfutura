@@ -26,6 +26,42 @@
         
         <%- include('components/adminNav.ejs') %>
 
+        <div class="form-create-product">
+            <h3>Crear Producto</h3>
+            <form action="email-templates/contact-form.php" method="post" class="row contact-form-style-02">
+                <div class="col-md-6 mb-30px">
+                    <input class="input-name bg-transparent border-color-transparent-white-light form-control" type="text" name="name" placeholder="Nombre y Apellido*" />
+                </div>
+                <div class="col-md-6 mb-30px">
+                    <input class="bg-transparent border-color-transparent-white-light form-control" type="email" name="email" placeholder="Email*" />
+                </div>
+                <div class="col-md-6 mb-30px">
+                    <input class="bg-transparent border-color-transparent-white-light form-control" type="tel" name="phone" placeholder="Telefono*" />
+                </div>
+                <div class="col-md-6 mb-30px">
+                    <input class="bg-transparent border-color-transparent-white-light form-control" type="text" name="subject" name="subject" placeholder="Asunto" />
+                </div>
+                <div class="col-md-12 mb-40px">
+                    <textarea class="bg-transparent border-color-transparent-white-light form-control" cols="40" rows="4" name="comment" placeholder="Mensaje"></textarea>
+                </div>
+                <div class="col-lg-7 col-md-8">
+                    <p class="mb-0 lh-30 text-center text-md-start fs-16">Estamos comprometidos a proteger su privacidad. Nunca recopilaremos información sobre usted sin su consentimiento explícito.</p>
+                </div>
+                <div class="col-lg-5 col-md-4 text-center text-md-end sm-mt-20px">
+                    <input type="hidden" name="redirect" value="">
+                    <button class="btn btn-medium btn-base-color btn-hover-animation btn-round-edge btn-box-shadow align-self-center" type="submit">
+                        <span> 
+                            <span class="btn-text">Enviar</span> 
+                            <span class="btn-icon"><i class="fa-solid fa-arrow-right"></i></span> 
+                        </span>
+                    </button>
+                </div>
+                <div class="col-12">
+                    <div class="form-results mt-20px d-none"></div>
+                </div>
+            </form>
+        </div>
+
         <section>
             <div class="container adminContainer" style="max-width: 100% !important">
                 <div class="row">
