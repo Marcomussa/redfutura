@@ -19244,7 +19244,7 @@ footer .footer-navbar .nav-item:last-child a {
 
 .form-create-product {
   display: none; /* Oculto por defecto */
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
