@@ -70,6 +70,10 @@ app.use(methodOverridee("_method"))
 
 //! Routes
 //? GET
+app.get("/", (req ,res) => {
+    res.render("index")
+})
+
 app.get("/login", checkNotAuthenticated, (req, res) => {
     res.render("login")
 })
@@ -92,7 +96,7 @@ app.get("/admin/integrantes", checkAuthenticated, (req, res) => {
 
 //* POST
 app.post("/login", checkNotAuthenticated, passport.authenticate("local", {
-    successRedirect: "admin",
+    successRedirect: "admin/productos",
     failureRedirect: "login",
     failureFlash: true
 }))
