@@ -8,7 +8,7 @@ const passport = require("passport")
 const flash = require("express-flash")
 const session = require("express-session")
 const bcrypt = require("bcrypt")
-const router = require("./routes")
+const adminRouter = require("./app/routes/adminRoutes")
 const initializePassport = require("./passport-config")
 const methodOverridee = require("method-override")
 const app = express()
@@ -68,10 +68,28 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverridee("_method"))
 
+app.use("/admin", adminRouter)
+
 //! Routes
 //? GET
 app.get("/", (req ,res) => {
     res.render("index")
+})
+
+app.get("/productos", (req ,res) => {
+    res.render("prod-sec")
+})
+
+app.get("/proveedores", (req ,res) => {
+    res.render("prov-sec")
+})
+
+app.get("/integrantes", (req ,res) => {
+    res.render("int-sec")
+})
+
+app.get("/contacto", (req, res) => {
+    res.render("contacto")
 })
 
 app.get("/login", checkNotAuthenticated, (req, res) => {
