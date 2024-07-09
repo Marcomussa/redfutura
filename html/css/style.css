@@ -5039,6 +5039,9 @@ input:focus, select:focus, textarea:focus, .form-control:focus {
 .m-30 {
   margin: 30% !important;
 }
+.ml-0px {
+  margin-left: 0px !important;
+}
 .mt-5px {
   margin-top: 5px !important;
 }
@@ -19259,3 +19262,17 @@ footer .footer-navbar .nav-item:last-child a {
   padding: 300px;
 }
 
+.bi-pencil-square,
+.bi-trash {
+  font-size: 20px;
+}
+
+.btn-success,
+.btn-danger,
+.btn-primary {
+  border-radius: 5px;
+}
+
+.btn-primary:hover {
+  color: #0b58ca !important
+}
