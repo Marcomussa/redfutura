@@ -38,6 +38,7 @@ const integrantesRouter = require('./routes/integrantes');
 const contactoRouter = require('./routes/contacto');
 const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
+const uploadRouter = require('./routes/upload'); 
 
 // Use routers
 app.use('/', indexRouter);
@@ -47,6 +48,8 @@ app.use('/integrantes', integrantesRouter);
 app.use('/contacto', contactoRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
+app.use('/upload', uploadRouter); 
+
 
 // Passport configuration and user setup
 const users = [];

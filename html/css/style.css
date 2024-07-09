@@ -3967,6 +3967,9 @@ input:focus, select:focus, textarea:focus, .form-control:focus {
 .w-45 {
   width: 45% !important;
 }
+.w-48 {
+  width: 48% !important;
+}
 .w-50 {
   width: 50% !important;
 }
@@ -19255,3 +19258,4 @@ footer .footer-navbar .nav-item:last-child a {
   align-items: center;
   padding: 300px;
 }
+
