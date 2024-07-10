@@ -1,15 +1,47 @@
-const Product = {}
+const multer = require('multer');
+const path = require('path');
+let Product = {}
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: 1024 * 1024 * 5 }, // Limite de 5MB
+    fileFilter: (req, file, cb) => {
+        const filetypes = /jpeg|jpg|png/;
+        const mimetype = filetypes.test(file.mimetype);
+        const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        if (mimetype && extname) {
+            return cb(null, true);
+        }
+        cb(new Error('Solo se permiten archivos de imagen'));
+    }
+});
+
 
 exports.createProduct = async (req, res) => {
     try {
-        const { name, description } = req.body;
-        const newProduct = new Product({});
-        await newProduct.save(); // Guardar el producto en la base de datos
-        res.status(201).json(newProduct)
+        const image = req.file ? req.file.filename : null;
+        //const newProduct = new Product({});
+        //await newProduct.save();
+        //res.status(201).json(newProduct);
+
+        if (!req.file) {
+            return res.status(400).send('No se ha subido ningún archivo.');
+        }
+        
+        return res.status(200).send("ok")
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-}
+};
 
 exports.getAllProducts = async (req, res) => {
     try {
@@ -51,3 +83,5 @@ exports.deleteProduct = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+exports.upload = upload;

@@ -21,6 +21,6 @@ router.get('/integrantes', checkAuthenticated, (req, res) => {
     res.render('admin/integrantes')
 })
 
-router.post('/productos/create', productController.createProduct)
+router.post('/productos/create',  productController.upload.single('image'), productController.createProduct)
 
 module.exports = router
