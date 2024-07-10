@@ -3,7 +3,7 @@ const Product = {}
 exports.createProduct = async (req, res) => {
     try {
         const { name, description } = req.body;
-        const newProduct = new Product({ name, price, description });
+        const newProduct = new Product({});
         await newProduct.save(); // Guardar el producto en la base de datos
         res.status(201).json(newProduct)
     } catch (error) {
