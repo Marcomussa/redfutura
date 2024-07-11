@@ -8,7 +8,7 @@ const flash = require("express-flash");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 const methodOverride = require("method-override");
-const connectToDB = require('./api/db/connect');
+const connectToDB = require('./api/db/utils/connect');
 
 const app = express();
 

@@ -7,14 +7,56 @@ const ProductSchema = new Schema(
       required: [true, 'Product name is required'],
       trim: true
     },
-    price: {
-      type: Number,
-      required: [true, 'Product price is required'],
-      min: 0
+    image: {
+      type: String,
+      required: [true, 'Product image is required'],
+      trim: true
+    },
+    category: {
+      type: String,
+      required: [true, 'Product category is required'],
+      trim: true,
+      uppercase: true
+    },
+    brand: {
+      type: String,
+      required: [true, 'Product brand is required'],
+      trim: true,
+      uppercase: true
+    },
+    article: {
+      type: String,
+      required: [true, 'Product article is required'],
+      trim: true,
+      uppercase: true
+    },
+    model: {
+      type: String,
+      required: [true, 'Product model is required'],
+      trim: true
     },
     sku: {
       type: String,
-      required: [true, 'Product sku is required']
+      required: [true, 'Product sku is required'],
+      trim: true
+    },
+    eanCode: {
+      type: String,
+      required: [true, 'Product code ean is required'],
+      trim: true
+    },
+    description: {
+      type: String
+    },
+    cost: {
+      type: Number,
+      min: 0,
+      required: [true, 'Product cost is required']
+    },
+    price: {
+      type: Number,
+      min: 0,
+      required: [true, 'Product price is required']
     }
   },
   { timestamps: false, versionKey: false });

@@ -1,0 +1,29 @@
+/*
+- Pensar ceateBulk por el tema de la imagen => setear default y que la cambien?
+- category debería ser un conjunto. Entidad aparte?
+- idem brands
+- Se pueden filtrar los productos para obtenerlos?
+*/
+
+Proveedores 
+- Nombre
+- ⁠Logo
+- ⁠Y estaria bueno que sea joineable a producto 
+
+Integrantes
+- Razon Social
+- ⁠Nombre Fantasia 
+- ⁠Direccion
+- ⁠Ciudad
+- ⁠Provincia
+- ⁠Codigo Postal
+
+- ⁠marca 
+- ⁠articulo 
+- ⁠modelo 
+- ⁠sku 
+- ⁠codigo ean 
+- ⁠precio sin iva (y desp calculamos los otros)
+- ⁠precio publico sin iva (y desp calculamos los otros)
+
+Obviamente SKU, código ean no se mostrarian … y capaz linea tampoco .. pero sirve para clasificar 

@@ -1,0 +1,18 @@
+const { Error } = require("mongoose");
+
+const DUPLICATE_VALUE_ERROR_CODE = 11000;
+
+export const handleMongoError = (error) => {
+  if (error.code === DUPLICATE_VALUE_ERROR_CODE) {
+    throw new Error(`Duplicate key value: ${error.keyValue}`);
+  }
+
+  if (error instanceof Error.CastError) {
+    // TODO
+    console.log('WARNING: Cast Error ocurred');
+  }
+
+  if (error instanceof Error.ValidationError) {
+    throw new Error(error.message);
+  }
+};

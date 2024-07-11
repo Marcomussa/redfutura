@@ -1,5 +1,11 @@
 const multer = require('multer');
 const path = require('path');
+
+const ProductRepository = require('../api/db/repositories/product.repository');
+const ProductService = require('../api/services/product.service');
+const service = new ProductService(ProductRepository);
+
+
 let Product = {}
 
 const storage = multer.diskStorage({
@@ -25,7 +31,7 @@ const upload = multer({
     }
 });
 
-
+// MARCO
 exports.createProduct = async (req, res) => {
     try {
         const image = req.file ? req.file.filename : null;
@@ -36,11 +42,16 @@ exports.createProduct = async (req, res) => {
         if (!req.file) {
             return res.status(400).send('No se ha subido ningún archivo.');
         }
-        
+
         return res.status(200).send("ok")
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+};
+// TEST IONI
+exports.createProductTest = async (req, res) => {
+    const { body } = req;
+    return service.createProduct(body);
 };
 
 exports.getAllProducts = async (req, res) => {
