@@ -7,6 +7,18 @@ class Repository {
     this.modelName = this.BaseModel.modelName;
   }
 
+  async findMany(filter) {
+    let objs;
+    try {
+      objs = await this.BaseModel.find(filter)
+    } catch (error) {
+      console.log(`WARNING: There was an error while finding ${this.modelName}s`);
+      objs = [];
+    }
+
+    return objs;
+  }
+
   async create(object) {
     const dbObj = new this.BaseModel(object);
 

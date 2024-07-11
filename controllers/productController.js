@@ -54,6 +54,7 @@ exports.createProductTest = async (req, res) => {
     return service.createProduct(body);
 };
 
+// MARCO
 exports.getAllProducts = async (req, res) => {
     try {
         const products = await Product.find(); // Obtener todos los productos de la base de datos
@@ -62,8 +63,11 @@ exports.getAllProducts = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+// IONI
+exports.getAllProductsTest = async (req, res) => {
+    return service.getProducts();
+};
 
-// Método para actualizar un producto por ID
 exports.updateProduct = async (req, res) => {
     try {
         const productId = req.params.productId;
