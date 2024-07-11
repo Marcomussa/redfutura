@@ -38,7 +38,7 @@ const integrantesRouter = require('./routes/integrantes');
 const contactoRouter = require('./routes/contacto');
 const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
-const uploadRouter = require('./routes/upload'); 
+const uploadRouter = require('./routes/upload');
 
 // Use routers
 app.use('/', indexRouter);
@@ -48,7 +48,7 @@ app.use('/integrantes', integrantesRouter);
 app.use('/contacto', contactoRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
-app.use('/upload', uploadRouter); 
+app.use('/upload', uploadRouter);
 
 
 // Passport configuration and user setup
@@ -76,12 +76,4 @@ initializePassport(passport,
 
 // Server setup
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, async () => {
-    try {
-        // TODO: Uncomment when DB is configured
-        // await connectToDB();
-        console.log(`Server running on port ${PORT}`);
-    } catch (error) {
-        console.log('Error while connecting to DB: ', error);
-    }
-});
+connectToDB(app, PORT);
