@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const { 
+const {
     createProductTest,
     getAllProductsTest
-} = require('../controllers/productController');
+} = require('../api/controllers/product.controller');
 
 router.get('/', (req, res) => {
     res.render('prod-sec');

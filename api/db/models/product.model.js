@@ -57,6 +57,11 @@ const ProductSchema = new Schema(
       type: Number,
       min: 0,
       required: [true, 'Product price is required']
+    },
+    supplier: {
+      type: Schema.Types.ObjectId,
+      required:[true, 'Product supplier is required'],
+      ref: 'Supplier'
     }
   },
   { timestamps: false, versionKey: false });

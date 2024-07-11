@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const multer = require('multer')
 const path = require('path')
-const uploadController = require('../controllers/uploadController')
+const uploadController = require('../api/controllers/uploadController')
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -14,8 +14,8 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ 
-    storage: storage 
+const upload = multer({
+    storage: storage
 })
 
 router.post('/productos', upload.single('file'), uploadController.handleUploadProductos)

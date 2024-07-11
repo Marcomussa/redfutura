@@ -1,8 +1,8 @@
 const multer = require('multer');
 const path = require('path');
 
-const ProductRepository = require('../api/db/repositories/product.repository');
-const ProductService = require('../api/services/product.service');
+const ProductRepository = require('../db/repositories/product.repository');
+const ProductService = require('../services/product.service');
 const service = new ProductService(ProductRepository);
 
 

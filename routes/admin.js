@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { checkAuthenticated } = require('../middlewares/auth')
-const productController = require('../controllers/productController')
+const productController = require('../api/controllers/product.controller')
 
 router.use(checkAuthenticated)
 
@@ -21,6 +21,6 @@ router.get('/integrantes', checkAuthenticated, (req, res) => {
     res.render('admin/integrantes')
 })
 
-router.post('/productos/create',  productController.upload.single('image'), productController.createProduct)
+router.post('/productos/create', productController.upload.single('image'), productController.createProduct)
 
 module.exports = router
