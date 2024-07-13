@@ -57,6 +57,26 @@ class Repository {
       throw new Error(`There was an error while deleting the ${this.modelName}`);
     }
   }
+
+  async updateById(object) {
+    const { _id: objectId, ...obj } = object;
+    let dbObj;
+
+    try {
+      dbObj = await this.BaseModel.findByIdAndUpdate(objectId, obj, {
+        new: true,
+        runValidators: true
+      }).lean();
+    } catch (error) {
+      handleMongoError(error);
+      throw new Error(`There was an error while updating the ${this.modelName}`);
+    }
+
+    if (!dbObj) {
+      throw new Error(`${this.modelName} with id ${objectId} does not exist`);
+    }
+    return dbObj;
+  }
 }
 
 module.exports = Repository;

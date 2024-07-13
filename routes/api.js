@@ -8,12 +8,14 @@ const { upload } = require('../api/utils/multer');
 const {
   getAllProducts,
   createProduct,
-  deleteProduct
+  deleteProduct,
+  updateProduct
 } = require('../api/controllers/product.controller');
 
 // PRODUCTS
 router.get('/products', getAllProducts);
 router.post('/products', upload.single('image'), createProduct);
 router.delete('/products/:productId', deleteProduct);
+router.put('/products/:productId', updateProduct);
 
 module.exports = router;

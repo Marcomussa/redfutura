@@ -25,7 +25,15 @@ exports.getAllProducts = async (req, res) => {
 };
 
 exports.updateProduct = async (req, res) => {
+    const productId = req.params.productId;
+    const { body } = req;
 
+    try {
+        const product = await service.updateProduct(productId, body);
+        return res.status(200).json(product);
+    } catch (error) {
+        return res.status(400).json({ error: error.message })
+    }
 };
 
 exports.deleteProduct = async (req, res) => {

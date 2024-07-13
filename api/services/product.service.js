@@ -92,8 +92,18 @@ class ProductService {
   // TODO
   async createManyProducts(products) { }
 
-  // TODO
-  async updateProduct() { }
+  async updateProduct(productId, product) {
+    this.validateProduct(product);
+
+    const oldProduct = await this._repository.findById(productId);
+    const { image, imageId } = oldProduct;
+
+    product._id = productId;
+    product.image = image;
+    product.imageId = imageId;
+
+    return this._repository.updateById(product);
+  }
 
   async deleteProduct(productId) {
     if (!productId) {
