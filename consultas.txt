@@ -1,0 +1,1 @@
+1. Se van a poder filtrar/paginar/ordenar los productos? Tanto en la pagina como en el panel de admin

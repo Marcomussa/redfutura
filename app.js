@@ -39,6 +39,8 @@ const contactoRouter = require('./routes/contacto');
 const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
 const uploadRouter = require('./routes/upload');
+// TODO: Delete
+const apiRouter = require('./routes/api');
 
 // Use routers
 app.use('/', indexRouter);
@@ -49,6 +51,7 @@ app.use('/contacto', contactoRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/upload', uploadRouter);
+app.use('/api', apiRouter);
 
 
 // Passport configuration and user setup

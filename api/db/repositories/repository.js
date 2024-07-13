@@ -31,6 +31,15 @@ class Repository {
 
     return dbObj;
   }
+
+  async deleteById(objectId) {
+    try {
+      await this.BaseModel.findByIdAndDelete(objectId);
+    } catch (error) {
+      handleMongoError(error);
+      throw new Error(`There was an error while deleting the ${this.modelName}`);
+    }
+  }
 }
 
 module.exports = Repository;
