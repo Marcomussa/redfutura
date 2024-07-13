@@ -51,6 +51,8 @@ class ProductService {
   async createProduct(product) {
     const { file } = product;
 
+    console.log(product)
+
     try {
       this.validateProduct(product);
     } catch (error) {

@@ -15,6 +15,7 @@ class CloudinaryService {
   }
 
   async uploadImage(path, folder, name) {
+
     try {
       const options = {
         public_id: name,
