@@ -19276,3 +19276,14 @@ footer .footer-navbar .nav-item:last-child a {
 .btn-primary:hover {
   color: #0b58ca !important
 }
+.btn-success:hover {
+  color: #198754 !important
+}
+.btn-danger:hover {
+  color: #dc3545 !important
+}
+
+.product-row {
+  padding: 0px 0px;
+  margin-top: 10px;
+}

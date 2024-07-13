@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-30px">
+                <div class="row mt-70px">
                     <div class="col-md-2 sidebar-admin text-white">
                         <a href="/admin/productos" class="fs-28 adminLinks text-base-color fw-600">Productos</a>
                         
@@ -72,53 +72,142 @@
                     <div class="col-md-10 list-admin">
                         <div class="row text-white">
                             <div class="col-md-2">
-                                <p>Imagen</p>
+                                <h6 class="fw-600">Imagen</h6>
                             </div>
                             <div class="col-md-2">
-                                <p>Modelo</p>
+                                <h6 class="fw-600">Modelo</h6>
                             </div>
                             <div class="col-md-2">
-                                <p>Linea</p>
+                                <h6 class="fw-600">Linea</h6>
                             </div>
                             <div class="col-md-2">
-                                <p>Marca</p>
+                                <h6 class="fw-600">Marca</h6>
                             </div>
                             <div class="col-md-2">
-                                <p>Articulo</p>
+                                <h6 class="fw-600">Articulo</h6>
                             </div>
-                           
-                           
-                            
-                            <div class="col-md-2  text-center">
-                                <p>Opciones</p>
+                            <div class="col-md-2 ">
+                                <h6 class="fw-600">Opciones</h6>
                             </div>
                         </div>
 
                         <!-- ACA ES LA VISUALIZACION DE PRODUCTOS -->
-                        <div class="row text-white">
-                            <div class="col-md-2">
-                               
-                            </div>
-                            <div class="col-md-2">
-                            
-                            </div>
-                            <div class="col-md-2">
-                               
-                            </div>
-                            <div class="col-md-2">
-                              
-                            </div>
-                            <div class="col-md-2">
-                               
-                            </div>
-                           
-                            <div class="col-md-2 text-center d-flex justify-content-between">
-                                <button type="button" class="btn btn-primary w-30"><i class="ml-0px bi bi-arrows-angle-expand"></i>
-                                </button>
-                                <button type="button" class="btn btn-success w-30" data-target="#editarProductoModal"  data-toggle="modal"><i class="ml-0px bi bi-pencil-square"></i>
-                                </button>
-                                <a href="/" class="btn btn-danger  w-30"><i class="ml-0px bi bi-trash"></i></a>
-                            </div>
+                       
+                            <% products.forEach(product => { %>
+                                <div class="row  mb-2 product-row">
+                                    <div class="col-md-2">
+                                        <% if (product.image) { %>
+                                        <img src="<%= product.image %>" alt="<%= product.name %>" class="img-fluid">
+                                        <% } else { %>
+                                        <p>No Image</p>
+                                        <% } %>
+                                    </div>
+                                    <div class="col-md-2 text-white align-self-center">
+                                        <p class="mb-0"><%= product.model %></p>
+                                    </div>
+                                    <div class="col-md-2 text-white align-self-center">
+                                        <p class="mb-0"><%= product.category %></p>
+                                    </div>
+                                    <div class="col-md-2 text-white align-self-center">
+                                        <p class="mb-0"><%= product.brand %></p>
+                                    </div>
+                                    <div class="col-md-2 text-white align-self-center">
+                                        <p class="mb-0"><%= product.article %></p>
+                                    </div>
+                                    <div class="col-md-2 text-center d-flex justify-content-between align-items-center">
+                                        <button type="button" class="btn btn-primary w-30 fs-20">
+                                            <i class="ml-0px bi bi-arrows-angle-expand"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-success w-30" data-target="#editarProductoModal-<%= product._id %>" data-toggle="modal">
+                                            <i class="ml-0px bi bi-pencil-square"></i>
+                                        </button>
+                                        <a href="/" class="btn btn-danger w-30">
+                                            <i class="ml-0px bi bi-trash"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="modal fade" id="editarProductoModal-<%= product._id %>" tabindex="-1" aria-labelledby="editarProductoModalLabel-<%= product._id %>" aria-hidden="true"  data-target=".bd-example-modal-lg">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="crearProductoModalLabel">Editar <%= product.name %></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none;
+                                                    border: none;
+                                                    font-size: 40px;
+                                                    color: red">
+                                                        <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Contenido del formulario para crear un nuevo producto -->
+                                                    <form action="/admin/productos/create" method="POST" enctype="multipart/form-data">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label for="nombreProducto text-primary">Nombre</label>
+                                                                <input type="text" class="form-control" name="name" value="<%= product.name %>">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="nombreProducto">Categoria</label>
+                                                                <input type="text" class="form-control" name="category" value="<%= product.category %>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-20px">
+                                                            <div class="col-md-6">
+                                                                <label for="nombreProducto">Marca</label>
+                                                                <input type="text" class="form-control" name="brand" value="<%= product.brand %>">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="nombreProducto">Articulo</label>
+                                                                <input type="text" class="form-control" name="article" value="<%= product.article %>">
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div class="row mt-20px">
+                                                            <div class="col-md-6">
+                                                                <label for="nombreProducto">Vendedor</label>
+                                                            <input type="text" class="form-control" name="supplier" value="<%= product.supplier %>">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="nombreProducto">Modelo</label>
+                                                                <input type="text" class="form-control" name="model" value="<%= product.model %>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-20px">
+                                                            <div class="col-md-6">
+                                                                <label for="nombreProducto">SKU</label>
+                                                                <input type="text" class="form-control" name="sku" value="<%= product.sku %>">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="nombreProducto">EAN</label>
+                                                                <input type="text" class="form-control" name="eanCode" value="<%= product.eanCode %>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-20px">
+                                                            <div class="col-md-6">
+                                                                <label for="nombreProducto">Costo</label>
+                                                                <input type="text" class="form-control" name="cost" value="<%= product.cost %>">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="nombreProducto">Precio</label>
+                                                                <input type="text" class="form-control" name="price" value="<%= product.price %>">
+                                                            </div>
+                                                        </div>
+                                                                
+                                                        <div class="form-group mt-20px">
+                                                            <label for="nombreProducto">Imagen</label>
+                                                            <input type="file" class="form-control" name="image" accept="image/*" value="<%= product.image %>">
+                                                        </div>
+                                                        <div class="form-group text-center">
+                                                            <button type="submit" class="btn btn-primary mt-10px w-65 pt-10px pb-10px" name="submit" value="submit">Guardar</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }) %>
                         </div>
                     </div>
                 </div>

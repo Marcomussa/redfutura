@@ -22,8 +22,11 @@ exports.createProduct = async (req, res) => {
 
 exports.getAllProducts = async (req, res) => {
     try {
-        const products = await service.getProducts();
-        return res.status(200).json(products);
+        const products = await service.getProducts()
+        console.log(products)
+        res.render("admin/productos", {
+            products
+        })
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }

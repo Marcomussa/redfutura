@@ -9,11 +9,7 @@ router.get('/', checkAuthenticated, (req, res) => {
     res.render('admin/admin')
 })
 
-router.get('/productos', checkAuthenticated, async (req, res) => {
-    const products = await productController.getAllProducts()
-    console.log(products)
-    res.render('admin/productos')
-})
+router.get('/productos', checkAuthenticated, productController.getAllProducts)
 
 router.get('/proveedores', checkAuthenticated, (req, res) => {
     res.render('admin/proveedores')
