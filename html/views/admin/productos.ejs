@@ -141,53 +141,64 @@
                     <div class="modal-body">
                         <!-- Contenido del formulario para crear un nuevo producto -->
                         <form action="/admin/productos/create" method="POST" enctype="multipart/form-data">
-                            
-                            <div class="form-group">
-                                <label for="nombreProducto">Nombre</label>
-                                <input type="text" class="form-control" name="name">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Nombre</label>
+                                    <input type="text" class="form-control" name="name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Categoria</label>
+                                    <input type="text" class="form-control" name="category">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="nombreProducto">Categoria</label>
-                                <input type="text" class="form-control" name="category">
+                            <div class="row mt-20px">
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Marca</label>
+                                    <input type="text" class="form-control" name="brand">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Articulo</label>
+                                    <input type="text" class="form-control" name="article">
+                                </div>
+                                
                             </div>
-                            <div class="form-group">
-                                <label for="nombreProducto">Marca</label>
-                                <input type="text" class="form-control" name="brand">
-                            </div>
-                            <div class="form-group">
-                                <label for="nombreProducto">Articulo</label>
-                                <input type="text" class="form-control" name="article">
-                            </div>
-                            <div class="form-group">
-                                <label for="nombreProducto">Modelo</label>
-                                <input type="text" class="form-control" name="model">
-                            </div>
-                            <div class="form-group">
-                                <label for="nombreProducto">SKU</label>
-                                <input type="text" class="form-control" name="sku">
-                            </div>
-                            <div class="form-group">
-                                <label for="nombreProducto">EAN</label>
-                                <input type="text" class="form-control" name="eanCode">
-                            </div>
-                            <div class="form-group">
-                                <label for="nombreProducto">Costo</label>
-                                <input type="text" class="form-control" name="cost">
-                            </div>
-                            <div class="form-group">
-                                <label for="nombreProducto">Precio</label>
-                                <input type="text" class="form-control" name="price">
-                            </div>
-                            <div class="form-group">
-                                <label for="nombreProducto">Vendedor</label>
+                            <div class="row mt-20px">
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Vendedor</label>
                                 <input type="text" class="form-control" name="supplier">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Modelo</label>
+                                    <input type="text" class="form-control" name="model">
+                                </div>
                             </div>
-                            <div class="form-group">
+                            <div class="row mt-20px">
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">SKU</label>
+                                    <input type="text" class="form-control" name="sku">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">EAN</label>
+                                    <input type="text" class="form-control" name="eanCode">
+                                </div>
+                            </div>
+                            <div class="row mt-20px">
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Costo</label>
+                                    <input type="text" class="form-control" name="cost">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Precio</label>
+                                    <input type="text" class="form-control" name="price">
+                                </div>
+                            </div>
+                                    
+                            <div class="form-group mt-20px">
                                 <label for="nombreProducto">Imagen</label>
                                 <input type="file" class="form-control" name="image" accept="image/*">
                             </div>
                             <div class="form-group text-center">
-                                <button type="submit" class="btn btn-primary mt-10px w-65" name="submit" value="submit">Guardar</button>
+                                <button type="submit" class="btn btn-primary mt-10px w-65 pt-10px pb-10px" name="submit" value="submit">Guardar</button>
                             </div>
                         </form>
                     </div>
