@@ -5,8 +5,6 @@ const ProductRepository = require('../db/repositories/product.repository');
 const ProductService = require('../services/product.service');
 const service = new ProductService(ProductRepository);
 
-let Product = {}
-
 exports.createProduct = async (req, res) => {
     const { body, file } = req;
     try {
@@ -27,21 +25,7 @@ exports.getAllProducts = async (req, res) => {
 };
 
 exports.updateProduct = async (req, res) => {
-    try {
-        const productId = req.params.productId;
-        const { name, description } = req.body;
-        const updatedProduct = await Product.findByIdAndUpdate(
-            productId,
-            { name, price, description },
-            { new: true } // Devolver el producto actualizado
-        );
-        if (!updatedProduct) {
-            return res.status(404).json({ message: 'Producto no encontrado' });
-        }
-        res.status(200).json(updatedProduct); // Responder con el producto actualizado
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+
 };
 
 exports.deleteProduct = async (req, res) => {
@@ -49,7 +33,7 @@ exports.deleteProduct = async (req, res) => {
 
     try {
         await service.deleteProduct(productId);
-        return res.status(200);
+        return res.sendStatus(200);
     } catch (error) {
         return res.status(500).json({ message: error.message })
     }

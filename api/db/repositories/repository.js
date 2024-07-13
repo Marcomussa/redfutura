@@ -7,6 +7,23 @@ class Repository {
     this.modelName = this.BaseModel.modelName;
   }
 
+  async findById(objectId, options) {
+    let obj;
+
+    try {
+      obj = await this.BaseModel.findById(objectId).select(options?.fields).populate(options?.populate).lean();
+    } catch (error) {
+      handleMongoError(error)
+      obj = null;
+    }
+
+    if (!obj) {
+      throw new Error(`${this.modelName} with id ${objectId} does not exist`);
+    }
+
+    return obj;
+  }
+
   async findMany(filter) {
     let objs;
     try {

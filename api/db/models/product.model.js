@@ -12,6 +12,11 @@ const ProductSchema = new Schema(
       required: [true, 'Product image is required'],
       trim: true
     },
+    imageId: {
+      type: String,
+      required: [true, 'Product image is required'],
+      trim: true
+    },
     category: {
       type: String,
       required: [true, 'Product category is required'],

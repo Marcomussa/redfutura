@@ -66,8 +66,9 @@ class ProductService {
     }
 
     try {
-      const imageUrl = await this._cloudinaryService.uploadImage(file.path, CLOUDINARY_PRODUCTS_FOLDER, product.name);
-      product.image = imageUrl;
+      const { publicId, url } = await this._cloudinaryService.uploadImage(file.path, CLOUDINARY_PRODUCTS_FOLDER, product.name);
+      product.image = url;
+      product.imageId = publicId
     } catch (error) {
       emptyUploadsDirectory();
       throw error;
@@ -94,13 +95,15 @@ class ProductService {
   // TODO
   async updateProduct() { }
 
-  // TODO
   async deleteProduct(productId) {
     if (!productId) {
       throw new Error('ProductId must be provided');
     }
 
+    const { imageId } = await this._repository.findById(productId);
+
     await this._repository.deleteById(productId);
+    await this._cloudinaryService.deleteImage(imageId);
   }
 }
 

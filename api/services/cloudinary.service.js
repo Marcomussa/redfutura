@@ -21,7 +21,9 @@ class CloudinaryService {
         folder
       };
       const response = await cloudinary.uploader.upload(path, options);
-      return response.url;
+
+      const { public_id: publicId, url } = response
+      return { publicId, url };
 
     } catch (error) {
       // TODO: Internal Server error
@@ -29,7 +31,9 @@ class CloudinaryService {
     }
   }
 
-  async deleteImage() { }
+  async deleteImage(publicId) {
+    await cloudinary.uploader.destroy(publicId)
+  }
 }
 
 module.exports = CloudinaryService;
