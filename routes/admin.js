@@ -9,7 +9,9 @@ router.get('/', checkAuthenticated, (req, res) => {
     res.render('admin/admin')
 })
 
-router.get('/productos', checkAuthenticated, (req, res) => {
+router.get('/productos', checkAuthenticated, async (req, res) => {
+    const products = await productController.getAllProducts()
+    console.log(products)
     res.render('admin/productos')
 })
 

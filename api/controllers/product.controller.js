@@ -8,11 +8,15 @@ const service = new ProductService(ProductRepository);
 exports.createProduct = async (req, res) => {
     const { body, file } = req;
     try {
-        const product = await service.createProduct({ ...body, file });
-        console.log(product)
-        return res.status(200).json(product);
+        await service.createProduct({ 
+            ...body, 
+            file 
+        })
+        return res.status(200).redirect("/admin/productos")
     } catch (error) {
-        return res.status(400).json({ error: error.message })
+        return res.status(400).json({ 
+            error: error.message 
+        })
     }
 };
 

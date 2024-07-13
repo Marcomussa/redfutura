@@ -115,9 +115,9 @@
                             <div class="col-md-2 text-center d-flex justify-content-between">
                                 <button type="button" class="btn btn-primary w-30"><i class="ml-0px bi bi-arrows-angle-expand"></i>
                                 </button>
-                                <button type="button" class="btn btn-success w-30"><i class="ml-0px bi bi-pencil-square"></i>
+                                <button type="button" class="btn btn-success w-30" data-target="#editarProductoModal"  data-toggle="modal"><i class="ml-0px bi bi-pencil-square"></i>
                                 </button>
-                                <button type="button" class="btn btn-danger  w-30"><i class="ml-0px bi bi-trash"></i></button>
+                                <a href="/" class="btn btn-danger  w-30"><i class="ml-0px bi bi-trash"></i></a>
                             </div>
                         </div>
                     </div>
@@ -125,12 +125,94 @@
             </div>
         </section>
         
-        <!-- Modal -->
+        <!-- Create Modal -->
         <div class="modal fade" id="crearProductoModal" tabindex="-1" aria-labelledby="crearProductoModalLabel" aria-hidden="true"  data-target=".bd-example-modal-lg">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="crearProductoModalLabel">Crear Nuevo Producto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none;
+                        border: none;
+                        font-size: 40px;
+                        color: red">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Contenido del formulario para crear un nuevo producto -->
+                        <form action="/admin/productos/create" method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Nombre</label>
+                                    <input type="text" class="form-control" name="name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Categoria</label>
+                                    <input type="text" class="form-control" name="category">
+                                </div>
+                            </div>
+                            <div class="row mt-20px">
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Marca</label>
+                                    <input type="text" class="form-control" name="brand">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Articulo</label>
+                                    <input type="text" class="form-control" name="article">
+                                </div>
+                                
+                            </div>
+                            <div class="row mt-20px">
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Vendedor</label>
+                                <input type="text" class="form-control" name="supplier">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Modelo</label>
+                                    <input type="text" class="form-control" name="model">
+                                </div>
+                            </div>
+                            <div class="row mt-20px">
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">SKU</label>
+                                    <input type="text" class="form-control" name="sku">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">EAN</label>
+                                    <input type="text" class="form-control" name="eanCode">
+                                </div>
+                            </div>
+                            <div class="row mt-20px">
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Costo</label>
+                                    <input type="text" class="form-control" name="cost">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nombreProducto">Precio</label>
+                                    <input type="text" class="form-control" name="price">
+                                </div>
+                            </div>
+                                    
+                            <div class="form-group mt-20px">
+                                <label for="nombreProducto">Imagen</label>
+                                <input type="file" class="form-control" name="image" accept="image/*">
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary mt-10px w-65 pt-10px pb-10px" name="submit" value="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Modal -->
+        <div class="modal fade" id="editarProductoModal" tabindex="-1" aria-labelledby="editarProductoModalLabel" aria-hidden="true"  data-target=".bd-example-modal-lg">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="crearProductoModalLabel">Editar ${NOMBRE}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none;
                         border: none;
                         font-size: 40px;
