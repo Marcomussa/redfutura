@@ -15,24 +15,31 @@ class CloudinaryService {
   }
 
   async uploadImage(path, folder, name) {
+    const publicId = `${Date.now()}_${name}`;
 
     try {
       const options = {
-        public_id: name,
+        public_id: publicId,
         folder
       };
       const response = await cloudinary.uploader.upload(path, options);
+      console.log('RESPONSE: ', response);
 
-      const { public_id: publicId, url } = response
-      return { publicId, url };
+      return { publicId: response.public_id, url: response.url };
 
     } catch (error) {
       // TODO: Internal Server error
       console.log('ERROR:', error);
+      throw error;
     }
   }
 
   async deleteImage(publicId) {
+    if (!publicId) {
+      // TODO
+      console.log('WARNING: No publicId provided to delete image from Cloudinary')
+      return;
+    }
     await cloudinary.uploader.destroy(publicId)
   }
 }

@@ -2,7 +2,7 @@ const { Error } = require("mongoose");
 
 const DUPLICATE_VALUE_ERROR_CODE = 11000;
 
-export const handleMongoError = (error) => {
+const handleMongoError = (error) => {
   if (error.code === DUPLICATE_VALUE_ERROR_CODE) {
     throw new Error(`Duplicate key value: ${error.keyValue}`);
   }
@@ -16,3 +16,5 @@ export const handleMongoError = (error) => {
     throw new Error(error.message);
   }
 };
+
+module.exports = handleMongoError;

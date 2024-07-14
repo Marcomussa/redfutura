@@ -5,7 +5,7 @@ const {
     createSupplier,
     getAllSuppliers,
     getSupplierById
-} = require('../api/controllers/supplier.controller');
+} = require('../controllers/supplier.controller');
 
 router.get('/', (req, res) => {
     res.render('prov-sec');

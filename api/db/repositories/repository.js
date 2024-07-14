@@ -1,3 +1,5 @@
+const handleMongoError = require('../utils/handleMongoError');
+
 class Repository {
   BaseModel;
   modelName;

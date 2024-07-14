@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { checkAuthenticated } = require('../middlewares/auth')
-const productController = require('../api/controllers/product.controller')
+const productController = require('../controllers/product.controller')
 
 router.use(checkAuthenticated)
 

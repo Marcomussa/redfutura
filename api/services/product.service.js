@@ -51,44 +51,25 @@ class ProductService {
   async createProduct(product) {
     const { file } = product;
 
-    console.log(product)
-
     try {
       this.validateProduct(product);
-    } catch (error) {
-      emptyUploadsDirectory();
-      throw error;
-    }
-
-    try {
       validateFile(file);
-    } catch (error) {
-      emptyUploadsDirectory();
-      throw error;
-    }
 
-    try {
       const { publicId, url } = await this._cloudinaryService.uploadImage(file.path, CLOUDINARY_PRODUCTS_FOLDER, product.name);
       product.image = url;
       product.imageId = publicId
+
+      const response = await this._repository.create(product)
+      emptyUploadsDirectory();
+      return response;
     } catch (error) {
+      if (product.imageId) {
+        await this._cloudinaryService.deleteImage(product.imageId);
+      }
+
       emptyUploadsDirectory();
       throw error;
     }
-
-    let response;
-    try {
-      response = await this._repository.create(product)
-    } catch (error) {
-      // TODO
-      await this._cloudinaryService.deleteImage();
-
-      emptyUploadsDirectory();
-      throw error;
-    }
-
-    emptyUploadsDirectory();
-    return response;
   }
 
   // TODO
