@@ -93,10 +93,17 @@ class ProductService {
       throw new Error('ProductId must be provided');
     }
 
-    const { imageId } = await this._repository.findById(productId);
+    try {
+      const deletedProduct = await this._repository.deleteById(productId);
 
-    await this._repository.deleteById(productId);
-    await this._cloudinaryService.deleteImage(imageId);
+      if (!deletedProduct) {
+        throw new Error(`Product with id ${productId} does not exist`);
+      }
+
+      await this._cloudinaryService.deleteImage(deletedProduct.imageId);
+    } catch (error) {
+      throw error;
+    }
   }
 }
 
