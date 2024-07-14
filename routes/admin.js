@@ -21,4 +21,10 @@ router.get('/integrantes', checkAuthenticated, (req, res) => {
 
 router.post('/productos/create', productController.upload.single('image'), productController.createProduct)
 
+router.post("/productos/delete/:productId", productController.deleteProduct)
+
+router.post("/productos/update/:productId", productController.updateProduct)
+
+router.post("/productos/update-image/:productId",  productController.upload.single('image'), productController.updateProductImage)
+
 module.exports = router

@@ -23,7 +23,6 @@ exports.createProduct = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
     try {
         const products = await service.getProducts()
-        console.log(products)
         res.render("admin/productos", {
             products
         })
@@ -37,8 +36,8 @@ exports.updateProduct = async (req, res) => {
     const { body } = req;
 
     try {
-        const product = await service.updateProduct(productId, body);
-        return res.status(200).json(product);
+        await service.updateProduct(productId, body);
+        return res.status(200).redirect("/admin/productos")
     } catch (error) {
         return res.status(400).json({ error: error.message })
     }
@@ -50,7 +49,7 @@ exports.updateProductImage = async (req, res) => {
 
     try {
         await service.updateProductImage(productId, file);
-        return res.status(200).json({ msg: 'ok' });
+        return res.status(200).redirect("/admin/productos")
     } catch (error) {
         return res.status(400).json({ error: error.message })
     }
@@ -61,7 +60,7 @@ exports.deleteProduct = async (req, res) => {
 
     try {
         await service.deleteProduct(productId);
-        return res.sendStatus(200);
+        return res.status(200).redirect("/admin/productos")
     } catch (error) {
         return res.status(500).json({ message: error.message })
     }

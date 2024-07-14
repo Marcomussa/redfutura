@@ -19287,3 +19287,12 @@ footer .footer-navbar .nav-item:last-child a {
   padding: 0px 0px;
   margin-top: 10px;
 }
+
+.img-gradient {
+  background-image: linear-gradient(to top, rgba(219, 42, 42, 1) 15%, transparent 100%);
+}
+
+.btn-dark:hover {
+  background: #212529 !important;
+  border-color: #212529 !important
+}

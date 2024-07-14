@@ -28,10 +28,11 @@
         
         <section>
             <div class="container adminContainer pt-0" style="max-width: 100% !important">
-                <div class="row mt-0 mb-1">
+                <div class="row mt-1 mb-2">
                     <div class="col-md-12">
                         <h3 class="text-white text-center"><b>Admin</b> Panel</h3>
                     </div>
+                 
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -94,13 +95,28 @@
                         <!-- ACA ES LA VISUALIZACION DE PRODUCTOS -->
                        
                             <% products.forEach(product => { %>
-                                <div class="row  mb-2 product-row">
-                                    <div class="col-md-2">
-                                        <% if (product.image) { %>
-                                        <img src="<%= product.image %>" alt="<%= product.name %>" class="img-fluid">
-                                        <% } else { %>
-                                        <p>No Image</p>
-                                        <% } %>
+                                <div class="row mb-2 product-row">
+                                    <div class="col-md-2 team-style-08">
+                                        <figure class="mb-0 position-relative">
+
+                                            <% if (product.image) { %>
+                                                <img src="<%= product.image %>" alt="<%= product.name %>" class="img-fluid border-radius-6px">
+                                                <% } else { %>
+                                                <p>No Image</p>
+                                            <% } %>
+
+                                            
+                                            <figcaption class="w-100 h-100 d-flex align-items-end p-12 lg-p-8 img-gradient border-radius-6px">
+                                                <div class="social-icon d-flex flex-column flex-shrink-1 w-100">
+                                                    <button class="w-100 btn btn-medium btn-dark btn-hover-animation btn-round-edge btn-box-shadow" type="submit" data-target="#editarImagenProductoModal-<%= product._id %>" data-toggle="modal">
+                                                        <span>
+                                                            <span class="btn-text">Editar Imagen</span>
+                                                            <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </figcaption>
+                                        </figure>
                                     </div>
                                     <div class="col-md-2 text-white align-self-center">
                                         <p class="mb-0"><%= product.model %></p>
@@ -115,22 +131,25 @@
                                         <p class="mb-0"><%= product.article %></p>
                                     </div>
                                     <div class="col-md-2 text-center d-flex justify-content-between align-items-center">
-                                        <button type="button" class="btn btn-primary w-30 fs-20">
+                                        <button type="button" class="btn btn-primary w-30 fs-20" data-target="#expandirProductoModal-<%= product._id %>" data-toggle="modal">
                                             <i class="ml-0px bi bi-arrows-angle-expand"></i>
                                         </button>
                                         <button type="button" class="btn btn-success w-30" data-target="#editarProductoModal-<%= product._id %>" data-toggle="modal">
                                             <i class="ml-0px bi bi-pencil-square"></i>
                                         </button>
-                                        <a href="/" class="btn btn-danger w-30">
-                                            <i class="ml-0px bi bi-trash"></i>
-                                        </a>
+                                        
+                                        <form method="POST" action="/admin/productos/delete/<%= product._id %>" class="w-30">
+                                            <button type="submit" href="/" class="btn btn-danger w-100">
+                                                <i class="ml-0px bi bi-trash"></i>
+                                            </button>
+                                        </form>
                                     </div>
 
                                     <div class="modal fade" id="editarProductoModal-<%= product._id %>" tabindex="-1" aria-labelledby="editarProductoModalLabel-<%= product._id %>" aria-hidden="true"  data-target=".bd-example-modal-lg">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="crearProductoModalLabel">Editar <%= product.name %></h5>
+                                                    <h5 class="modal-title" id="editarProductoModalLabel">Editar <%= product.name %></h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none;
                                                     border: none;
                                                     font-size: 40px;
@@ -139,8 +158,8 @@
                                                       </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <!-- Contenido del formulario para crear un nuevo producto -->
-                                                    <form action="/admin/productos/create" method="POST" enctype="multipart/form-data">
+
+                                                    <form action="/admin/productos/update/<%= product._id %>" method="POST">
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <label for="nombreProducto text-primary">Nombre</label>
@@ -192,10 +211,95 @@
                                                                 <input type="text" class="form-control" name="price" value="<%= product.price %>">
                                                             </div>
                                                         </div>
-                                                                
+                                                                  
+                                                        <div class="form-group text-center">
+                                                            <button type="submit" class="btn btn-primary mt-10px w-65 pt-10px pb-10px" name="submit" value="submit">Guardar</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="expandirProductoModal-<%= product._id %>" tabindex="-1" aria-labelledby="expandirProductoModal-<%= product._id %>" aria-hidden="true"  data-target=".bd-example-modal-lg">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="expandirProductoModalLabel">Detalles de <%= product.name %></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none;
+                                                    border: none;
+                                                    font-size: 40px;
+                                                    color: red">
+                                                        <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <div class="row">
+                                                            <div class="col-md-6">
+                                                                <p>Nombre: <b><%= product.name %></b></p>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <p>Categoria: <b><%= product.category %></b></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-20px">
+                                                            <div class="col-md-6">
+                                                                <p>Marca: <b><%= product.brand %></b></p>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <p>Articulo: <b><%= product.brand %></b></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-20px">
+                                                            <div class="col-md-6">
+                                                                <p>Vendedor: <b><%= product.supplier %></b></p>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <p>Modelo: <b><%= product.model %></b></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-20px">
+                                                            <div class="col-md-6">
+                                                                <p>SKU: <b><%= product.sku %></b></p>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <p>EAN: <b><%= product.eanCode %></b></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-20px">
+                                                            <div class="col-md-6">
+                                                                <p>Costo: $ <b><%= product.cost %></b></p>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <p>Precio: $ <b><%= product.price %></b></p>
+                                                            </div>
+                                                        </div>
+                                                
+                                                </div>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="editarImagenProductoModal-<%= product._id %>" tabindex="-1" aria-labelledby="editarImagenProductoModal" aria-hidden="true"  data-target=".bd-example-modal-lg">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="editarImagenProductoModalLabel">Editar Imagen de <%= product.name %></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none;
+                                                    border: none;
+                                                    font-size: 40px;
+                                                    color: red">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <form action="/admin/productos/update-image/<%= product._id %>" method="POST" enctype="multipart/form-data"> 
                                                         <div class="form-group mt-20px">
-                                                            <label for="nombreProducto">Imagen</label>
-                                                            <input type="file" class="form-control" name="image" accept="image/*" value="<%= product.image %>">
+                                                            <input type="file" class="form-control" name="image" accept="image/*">
                                                         </div>
                                                         <div class="form-group text-center">
                                                             <button type="submit" class="btn btn-primary mt-10px w-65 pt-10px pb-10px" name="submit" value="submit">Guardar</button>
@@ -213,7 +317,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Create Modal -->
         <div class="modal fade" id="crearProductoModal" tabindex="-1" aria-labelledby="crearProductoModalLabel" aria-hidden="true"  data-target=".bd-example-modal-lg">
             <div class="modal-dialog">
@@ -225,7 +329,7 @@
                         font-size: 40px;
                         color: red">
                             <span aria-hidden="true">&times;</span>
-                          </button>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <!-- Contenido del formulario para crear un nuevo producto -->
@@ -295,90 +399,8 @@
                 </div>
             </div>
         </div>
-
-        <!-- Edit Modal -->
-        <div class="modal fade" id="editarProductoModal" tabindex="-1" aria-labelledby="editarProductoModalLabel" aria-hidden="true"  data-target=".bd-example-modal-lg">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="crearProductoModalLabel">Editar ${NOMBRE}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none;
-                        border: none;
-                        font-size: 40px;
-                        color: red">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Contenido del formulario para crear un nuevo producto -->
-                        <form action="/admin/productos/create" method="POST" enctype="multipart/form-data">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="nombreProducto">Nombre</label>
-                                    <input type="text" class="form-control" name="name">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="nombreProducto">Categoria</label>
-                                    <input type="text" class="form-control" name="category">
-                                </div>
-                            </div>
-                            <div class="row mt-20px">
-                                <div class="col-md-6">
-                                    <label for="nombreProducto">Marca</label>
-                                    <input type="text" class="form-control" name="brand">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="nombreProducto">Articulo</label>
-                                    <input type="text" class="form-control" name="article">
-                                </div>
-                                
-                            </div>
-                            <div class="row mt-20px">
-                                <div class="col-md-6">
-                                    <label for="nombreProducto">Vendedor</label>
-                                <input type="text" class="form-control" name="supplier">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="nombreProducto">Modelo</label>
-                                    <input type="text" class="form-control" name="model">
-                                </div>
-                            </div>
-                            <div class="row mt-20px">
-                                <div class="col-md-6">
-                                    <label for="nombreProducto">SKU</label>
-                                    <input type="text" class="form-control" name="sku">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="nombreProducto">EAN</label>
-                                    <input type="text" class="form-control" name="eanCode">
-                                </div>
-                            </div>
-                            <div class="row mt-20px">
-                                <div class="col-md-6">
-                                    <label for="nombreProducto">Costo</label>
-                                    <input type="text" class="form-control" name="cost">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="nombreProducto">Precio</label>
-                                    <input type="text" class="form-control" name="price">
-                                </div>
-                            </div>
-                                    
-                            <div class="form-group mt-20px">
-                                <label for="nombreProducto">Imagen</label>
-                                <input type="file" class="form-control" name="image" accept="image/*">
-                            </div>
-                            <div class="form-group text-center">
-                                <button type="submit" class="btn btn-primary mt-10px w-65 pt-10px pb-10px" name="submit" value="submit">Guardar</button>
-                            </div>
-                        </form>
-                    </div>
-                  
-                </div>
-            </div>
-        </div>
-        
        
+        
         <script type="text/javascript" src="../js/jquery.js"></script>
         <script type="text/javascript" src="../js/vendors.min.js"></script>
         <script type="text/javascript" src="../js/main.js"></script>
