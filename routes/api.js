@@ -9,7 +9,8 @@ const {
   getAllProducts,
   createProduct,
   deleteProduct,
-  updateProduct
+  updateProduct,
+  updateProductImage
 } = require('../controllers/product.controller');
 
 // PRODUCTS
@@ -17,5 +18,6 @@ router.get('/products', getAllProducts);
 router.post('/products', upload.single('image'), createProduct);
 router.delete('/products/:productId', deleteProduct);
 router.put('/products/:productId', updateProduct);
+router.put('/products/:productId/image', upload.single('image'), updateProductImage);
 
 module.exports = router;

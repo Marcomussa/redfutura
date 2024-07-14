@@ -3,6 +3,7 @@ const CloudinaryService = require('./cloudinary.service');
 
 const { validateFile } = require('../utils/multer');
 const emptyUploadsDirectory = require('../utils/emptyUploadsDirectory');
+const { validate } = require('../db/models/product.model');
 
 const TEST_DEFAULT_IMAGE = 'https://multipoint.com.ar/Image/0/750_750-A5.jpg';
 const CLOUDINARY_PRODUCTS_FOLDER = 'products';
@@ -86,6 +87,27 @@ class ProductService {
     product.imageId = imageId;
 
     return this._repository.updateById(product);
+  }
+
+  async updateProductImage(productId, file) {
+    try {
+      validateFile(file);
+
+      const { publicId, url } = await this._cloudinaryService.uploadImage(file.path, CLOUDINARY_PRODUCTS_FOLDER, productId);
+
+      const updateData = { imageId: publicId, image: url };
+      console.log('UPDATE DATA: ', updateData);
+      const oldProduct = await this._repository.updateById(productId, updateData);
+      console.log('RESPONSE OLD PRODUCT: ', oldProduct);
+      const { imageId } = oldProduct;
+      await this._cloudinaryService.deleteImage(imageId);
+      emptyUploadsDirectory();
+
+    } catch (error) {
+      console.log('ERROR: ', error);
+      emptyUploadsDirectory();
+      throw error;
+    }
   }
 
   async deleteProduct(productId) {

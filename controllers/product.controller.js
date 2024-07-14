@@ -44,6 +44,18 @@ exports.updateProduct = async (req, res) => {
     }
 };
 
+exports.updateProductImage = async (req, res) => {
+    const productId = req.params.productId;
+    const { file } = req;
+
+    try {
+        await service.updateProductImage(productId, file);
+        return res.status(200).json({ msg: 'ok' });
+    } catch (error) {
+        return res.status(400).json({ error: error.message })
+    }
+};
+
 exports.deleteProduct = async (req, res) => {
     const productId = req.params.productId;
 
