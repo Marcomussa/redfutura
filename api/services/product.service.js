@@ -77,16 +77,15 @@ class ProductService {
   async createManyProducts(products) { }
 
   async updateProduct(productId, product) {
-    this.validateProduct(product);
-
-    const oldProduct = await this._repository.findById(productId);
-    const { image, imageId } = oldProduct;
-
-    product._id = productId;
-    product.image = image;
-    product.imageId = imageId;
-
-    return this._repository.updateById(product);
+    try {
+      this.validateProduct(product);
+  
+      const updatedProduct = await this._repository.updateById(productId, product, true);
+      return updatedProduct;
+    } catch (error) {
+      console.log('ERROR: ', error);
+      throw error;
+    }
   }
 
   async updateProductImage(productId, file) {
@@ -96,15 +95,13 @@ class ProductService {
       const { publicId, url } = await this._cloudinaryService.uploadImage(file.path, CLOUDINARY_PRODUCTS_FOLDER, productId);
 
       const updateData = { imageId: publicId, image: url };
-      console.log('UPDATE DATA: ', updateData);
       const oldProduct = await this._repository.updateById(productId, updateData);
-      console.log('RESPONSE OLD PRODUCT: ', oldProduct);
+
       const { imageId } = oldProduct;
       await this._cloudinaryService.deleteImage(imageId);
+      
       emptyUploadsDirectory();
-
     } catch (error) {
-      console.log('ERROR: ', error);
       emptyUploadsDirectory();
       throw error;
     }
