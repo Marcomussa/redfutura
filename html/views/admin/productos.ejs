@@ -38,21 +38,22 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-4 text-start">
+                                
+                            </div>
+                            <div class="col-md-4 text-center">
                                 <input class="input-name bg-transparent border-color-transparent-white-light w-70" type="text" name="email" placeholder="Buscar Producto" />
                                 <button class="btn btn-medium btn-base-color btn-hover-animation btn-round-edge btn-box-shadow " type="submit">
                                     <i class="bi bi-search text-white"></i>
-                                </button>    
+                                </button> 
                             </div>
-                            <div class="col-md-5 text-center">
-                                <form action="/upload/productos" method="POST" enctype="multipart/form-data">                        
-                                    <div class="input-group">
-                                        <input type="file" class="form-control bg-transparent border-color-transparent-white-light file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="file">
-                                        <button class="btn btn-base-color btn-hover-animation btn-round-edge btn-box-shadow" type="submit" id="inputGroupFileAddon04">Subir</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="col-md-3 text-end">
-                                <button class="w-100 btn btn-medium btn-base-color btn-hover-animation btn-round-edge btn-box-shadow" type="button" data-toggle="modal" data-target="#crearProductoModal">
+                            <div class="col-md-4 text-end">
+                                <button class="btn btn-medium btn-base-color btn-hover-animation btn-round-edge btn-box-shadow " type="submit" data-toggle="modal" data-target="#importarProductoModal">
+                                    <span> 
+                                        <span class="btn-text">Importar Masivamente</span> 
+                                        <span class="btn-icon"><i class="fa-solid fa-arrow-right"></i></span> 
+                                    </span>
+                                </button>
+                                <button class=" btn btn-medium btn-base-color btn-hover-animation btn-round-edge btn-box-shadow" type="button" data-toggle="modal" data-target="#crearProductoModal">
                                     <span>
                                         <span class="btn-text">Crear Nuevo Producto</span>
                                         <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
@@ -392,6 +393,32 @@
                             </div>
                             <div class="form-group text-center">
                                 <button type="submit" class="btn btn-primary mt-10px w-65 pt-10px pb-10px" name="submit" value="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+
+        <!-- Import Modal -->
+        <div class="modal fade" id="importarProductoModal" tabindex="-1" aria-labelledby="importarProductoModal" aria-hidden="true"  data-target=".bd-example-modal-lg">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="crearProductoModalLabel">Importar Productos Masivamente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none;
+                        border: none;
+                        font-size: 40px;
+                        color: red">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/upload/productos" method="POST" enctype="multipart/form-data">                        
+                            <div class="input-group">
+                                <input type="file" class="form-control bg-transparent border-color-transparent-white-light file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="file">
+                                <button class="btn btn-base-color btn-hover-animation btn-round-edge btn-box-shadow" type="submit" id="inputGroupFileAddon04">Subir</button>
                             </div>
                         </form>
                     </div>
