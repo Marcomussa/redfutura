@@ -29,11 +29,18 @@
         <section class="page-title-big-typography bg-dark-gray mb-0 pb-0 mt-0 pt-50px" data-parallax-background-ratio="0.5" style="background-image: url(images/demo-conference-page-bg.jpg)">
             <div class="container">
                 <div class="row align-items-center justify-content-center extra-small-screen">
-                    <div class="col-lg-8 text-center page-title-extra-large">
+                    <div class="col-md-12 text-center page-title-extra-large mt-20px">
                         <h1 class="mb-0 text-white alt-font fw-600 ls-minus-5px">
                             <span class="d-block text-outline text-outline-width-2px text-outline-color-white" data-fancy-text='{ "string": ["Productos"], "duration": 500, "delay": 0, "speed": 50, "clipPath": ["inset(0 500px 0 0)", "inset(0px -5px 0px 0px)"], "easing": "easeOutCubic" }'></span>
-                            <span data-anime='{ "opacity": [0, 1], "easing": "easeOutQuad", "duration": 1000, "delay": 300 }'></span>
+                            
                         </h1>
+                        <span class="text-white" data-anime='{ "opacity": [0, 1], "easing": "easeOutQuad", "duration": 1000, "delay": 300 }'>Todo lo que buscas en un mismo lugar</span>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <input class="input-name input-search w-70" type="text" name="email" placeholder="Buscar Producto/s" />
+                            <button class="btn-search btn btn-dark-gray btn-hover-animation btn-round-edge btn-box-shadow " type="submit">
+                            <i class="bi bi-search text-white"></i>
+                        </button> 
                     </div>
                 </div>
             </div>
@@ -49,7 +56,7 @@
             </div>
         </section> -->
         <!-- end section -->
-        <section class="bg-midnight-blue pt-50px pb-0 mt-0 mb-0">
+        <!-- <section class="bg-midnight-blue pt-50px pb-0 mt-0 mb-0">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
@@ -60,20 +67,43 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- start section -->
+        <section class="bg-midnight-blue sm-pt-25px pb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="bg-midnight-blue pt-0 sm-pt-50px">
             <div class="container">
-                <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-sm-2 justify-content-center" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>  
+                <div class="mb-10px row row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-sm-2 justify-content-center">  
                     <% products.forEach(product => { %>
-                        <div class="col card m-2">
-                            <img src="<%= product.image %>" alt="" class="card-img-top">
-                            <div class="card-body">
-                                <h6 class="card-text"><%= product.name %> | <%= product.brand %></h6>
-                                <p class="card-text"><%= product.category %></p>
+                        <div class="d-flex" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                            <div class="col-4">
+                                <img src="<%= product.image %>" alt="" class="card-img-top">
+                            </div>
+                            <div class="col-8 h-200px pl-20px">
+                                <h6 class="text-white"><%= product.name %> | <%= product.brand %></h6>
+                                <p class="text-white"><%= product.category %></p>
                             </div>
                         </div>
-                        
                     <% }) %>
                 </div>
             </div>

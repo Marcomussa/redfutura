@@ -4376,6 +4376,9 @@ input:focus, select:focus, textarea:focus, .form-control:focus {
 .p-29 {
   padding: 29% !important;
 }
+.pl-20px {
+  padding-left: 20px !important;
+}
 .p-30 {
   padding: 30% !important;
 }
@@ -19295,4 +19298,18 @@ footer .footer-navbar .nav-item:last-child a {
 .btn-dark:hover {
   background: #212529 !important;
   border-color: #212529 !important
+}
+
+.input-search {
+  padding: 6px 25px !important;
+  border-radius: 4px;
+}
+
+.btn-search {
+  padding: 6px 25px !important;
+}
+
+.btn-search i{
+  font-size: 19px !important;
+  margin-left: 0px !important;
 }
