@@ -4,12 +4,17 @@ const SupplierSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, 'Product name is required'],
+      required: [true, 'Supplier name is required'],
       trim: true
     },
     image: {
       type: String,
-      required: [true, 'Product image is required'],
+      required: [true, 'Supplier image is required'],
+      trim: true
+    },
+    imageId: {
+      type: String,
+      required: [true, 'Supplier image is required'],
       trim: true
     }
   },

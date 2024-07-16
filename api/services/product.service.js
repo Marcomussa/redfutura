@@ -109,7 +109,7 @@ class ProductService {
 
   async deleteProduct(productId) {
     if (!productId) {
-      throw new Error('ProductId must be provided');
+      throw new Error('Product id must be provided');
     }
 
     try {
