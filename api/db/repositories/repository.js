@@ -61,25 +61,6 @@ class Repository {
     }
   }
 
-  // async updateById(object, returnNew) {
-  //   const { _id: objectId, ...obj } = object;
-  //   let dbObj;
-
-  //   try {
-  //     dbObj = await this.BaseModel.findByIdAndUpdate(objectId, obj, {
-  //       new: returnNew ?? false,
-  //       runValidators: true
-  //     }).lean();
-  //   } catch (error) {
-  //     handleMongoError(error);
-  //     throw new Error(`There was an error while updating the ${this.modelName}`);
-  //   }
-
-  //   if (!dbObj) {
-  //     throw new Error(`${this.modelName} with id ${objectId} does not exist`);
-  //   }
-  //   return dbObj;
-  // }
   async updateById(objectId, updateData, returnNew) {
     let dbObj;
 

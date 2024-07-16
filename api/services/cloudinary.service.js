@@ -23,7 +23,6 @@ class CloudinaryService {
         folder
       };
       const response = await cloudinary.uploader.upload(path, options);
-      console.log('RESPONSE: ', response);
 
       return { publicId: response.public_id, url: response.url };
 
