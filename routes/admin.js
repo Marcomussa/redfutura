@@ -19,6 +19,8 @@ router.get('/integrantes', checkAuthenticated, (req, res) => {
     res.render('admin/integrantes')
 })
 
+router.get('/productos/search', productController.findProductByName);
+
 router.post('/productos/create', productController.upload.single('image'), productController.createProduct)
 
 router.post("/productos/delete/:productId", productController.deleteProduct)

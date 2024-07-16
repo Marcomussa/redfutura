@@ -5,6 +5,21 @@ const ProductRepository = require('../api/db/repositories/product.repository');
 const ProductService = require('../api/services/product.service');
 const service = new ProductService(ProductRepository);
 
+exports.findProductByName = async (req, res) => {
+    const { product } = req.query
+    try {
+        const result = await service.getProducts(product)
+        return res.render("admin/productos", {
+            products: [],
+            result
+        })
+    } catch (error) {
+        return res.status(400).json({
+            error: error.message
+        })
+    }
+}
+
 exports.createProduct = async (req, res) => {
     const { body, file } = req;
     try {
