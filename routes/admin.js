@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { checkAuthenticated } = require('../middlewares/auth')
 const productController = require('../controllers/product.controller')
+const memberController = require('../controllers/member.controller')
 
 router.use(checkAuthenticated)
 
@@ -15,9 +16,9 @@ router.get('/proveedores', checkAuthenticated, (req, res) => {
     res.render('admin/proveedores')
 })
 
-router.get('/integrantes', checkAuthenticated, (req, res) => {
-    res.render('admin/integrantes')
-})
+router.get('/integrantes', checkAuthenticated, memberController.getAllMembers)
+
+router.post('/integrantes/create', productController.upload.single('image'), memberController.createMember)
 
 router.get('/productos/search', productController.findProductByName);
 

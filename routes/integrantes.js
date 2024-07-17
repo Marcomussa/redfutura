@@ -5,4 +5,5 @@ router.get('/', (req, res) => {
     res.render('int-sec');
 });
 
+
 module.exports = router;
