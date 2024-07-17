@@ -39,6 +39,9 @@ const validateSize = (file) => {
 };
 
 const validateFile = (file) => {
+  if (!file) {
+    throw new Error('File is required')
+  }
   validateSize(file);
   validateMimetype(file);
 };

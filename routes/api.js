@@ -11,6 +11,10 @@ const SupplierRepository = require('../api/db/repositories/supplier.repository')
 const SupplierService = require('../api/services/supplier.service');
 const supplierService = new SupplierService(SupplierRepository);
 
+const MemberRepository = require('../api/db/repositories/member.repository');
+const MemberService = require('../api/services/member.service');
+const memberService = new MemberService(MemberRepository);
+
 const router = express.Router();
 
 // PRODUCTS
@@ -139,5 +143,69 @@ const deleteSupplier = async (req, res) => {
   }
 };
 router.delete('/suppliers/:supplierId', deleteSupplier);
+
+
+// MEMBERS
+const getAllMembers = async (req, res) => {
+  try {
+    const members = await memberService.getMembers();
+    return res.status(200).json(members);
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+};
+router.get('/members', getAllMembers);
+
+const createMember = async (req, res) => {
+  const { body, file } = req;
+  try {
+    const member = await memberService.createMember({
+      ...body,
+      file
+    })
+    return res.status(200).json(member)
+  } catch (error) {
+    return res.status(400).json({ error: error.message })
+  }
+};
+router.post('/members', upload.single('image'), createMember);
+
+const updateMember = async (req, res) => {
+  const memberId = req.params.memberId;
+  const { body } = req;
+
+  try {
+    const response = await memberService.updateMember(memberId, body);
+    return res.status(200).json(response)
+  } catch (error) {
+    return res.status(400).json({ error: error.message })
+  }
+};
+router.put('/members/:memberId', updateMember);
+
+const updateMemberImage = async (req, res) => {
+  const memberId = req.params.memberId;
+  const { file } = req;
+
+  try {
+    const response = await memberService.updateMemberImage(memberId, file);
+    return res.status(200).json(response)
+  } catch (error) {
+    return res.status(400).json({ error: error.message })
+  }
+};
+router.put('/members/:memberId/image', upload.single('image'), updateMemberImage);
+
+const deleteMember = async (req, res) => {
+  const memberId = req.params.memberId;
+
+  try {
+    const response = await memberService.deleteMember(memberId);
+    return res.status(200).json(response)
+  } catch (error) {
+    return res.status(500).json({ message: error.message })
+  }
+};
+router.delete('/members/:memberId', deleteMember);
 
 module.exports = router;
