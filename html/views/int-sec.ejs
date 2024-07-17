@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="css/style.css"/>
         <link rel="stylesheet" href="css/responsive.css"/>
         <link rel="stylesheet" href="demos/conference/conference.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     </head>
     <body data-mobile-nav-style="classic">  
         <!-- start header -->
@@ -41,10 +42,8 @@
 
         <section class="bg-midnight-blue pt-0 half-section d-none d-md-block">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="p-0 overlap-section text-start ps-7" data-anime='{ "opacity": [0, 1], "translateY": [50, 0], "delay": 1000, "duration": 600, "easing": "easeOutQuad" }'>
-                        <img src="images/demo-conference-02.png" alt="" class="animation-rotation">
-                    </div>
+                <div class="row d-flex justify-content-center">
+                    <div id="map" class="w-90"></div>
                 </div> 
             </div>
         </section>
@@ -70,5 +69,30 @@
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/vendors.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
     </body>
 </html>
+
+<script>
+    const map = L.map('map').setView([-38.4161, -63.6167], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+// Define algunas ubicaciones en Argentina
+const locations = [
+    { name: "Buenos Aires", coords: [-34.6037, -58.3816] },
+    { name: "Córdoba", coords: [-31.4201, -64.1888] },
+    { name: "Rosario", coords: [-32.9468, -60.6393] },
+    { name: "Mendoza", coords: [-32.8895, -68.8458] }
+];
+
+// Agrega pines para cada ubicación
+locations.forEach(location => {
+    L.marker(location.coords).addTo(map)
+        .bindPopup(`<b>${location.name}</b>`)
+        .openPopup();
+});
+</script>

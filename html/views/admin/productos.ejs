@@ -37,16 +37,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-4 text-start">
-                                
-                            </div>
-                            <div class="col-md-4 text-center">
+                        
+                            <div class="col-md-6 text-end">
                                 <form action="/admin/productos/search" method="GET">
                                     <input class="input-name bg-transparent border-color-transparent-white-light w-70" type="text" name="product" placeholder="Buscar Producto" />
                                     <button class="btn btn-medium btn-base-color btn-hover-animation btn-round-edge btn-box-shadow " type="submit"><i class="bi bi-search text-white"></i></button> 
                                 </form>
                             </div>
-                            <div class="col-md-4 text-end">
+                            <div class="col-md-6 text-left">
                                 <button class="btn btn-medium btn-base-color btn-hover-animation btn-round-edge btn-box-shadow " type="submit" data-toggle="modal" data-target="#importarProductoModal">
                                     <span> 
                                         <span class="btn-text">Importar Masivamente</span> 
@@ -346,7 +344,7 @@
                                         </figure>
                                     </div>
                                     <div class="col-md-2 text-white align-self-center">
-                                        <p class="mb-0"><%= product.model %></p>
+                                        <p class="mb-0"><%= product.name %></p>
                                     </div>
                                     <div class="col-md-2 text-white align-self-center">
                                         <p class="mb-0"><%= product.category %></p>
