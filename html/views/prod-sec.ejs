@@ -30,18 +30,18 @@
             <div class="container pt-70px pb-50px xs-pb-0">
                 <div class="row align-items-center justify-content-center extra-small-screen">
                     <div class="col-md-12 text-center page-title-extra-large">
-                        <h1 class="mb-0 text-white alt-font fw-600 ls-minus-5px">
+                        <h1 class="mb-0 text-white alt-font fw-600 ls-minus-5px mb-10px">
                             <span class="d-block text-outline text-outline-width-2px text-outline-color-white" data-fancy-text='{ "string": ["Productos"], "duration": 500, "delay": 0, "speed": 50, "clipPath": ["inset(0 500px 0 0)", "inset(0px -5px 0px 0px)"], "easing": "easeOutCubic" }'></span>
                             
                         </h1>
-                        <span class="text-white" data-anime='{ "opacity": [0, 1], "easing": "easeOutQuad", "duration": 1000, "delay": 300 }'>Todo lo que buscas en un mismo lugar</span>
+                        <span class="text-white fs-24" data-anime='{ "opacity": [0, 1], "easing": "easeOutQuad", "duration": 1000, "delay": 300 }'>Todo lo que buscas en un mismo lugar</span>
                     </div>
-                    <div class="col-md-12 text-center">
+                    <!-- <div class="col-md-12 text-center">
                         <input class="input-name input-search w-70" type="text" name="email" placeholder="Buscar Producto/s" />
                             <button class="btn-search btn btn-dark-gray btn-hover-animation btn-round-edge btn-box-shadow " type="submit">
                             <i class="bi bi-search text-white"></i>
                         </button> 
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -70,17 +70,19 @@
         </section> -->
         <!-- start section -->
        
-        <section class="bg-midnight-blue pt-0 sm-pt-50px">
+        <section class="bg-midnight-blue pt-50px">
             <div class="container">
-                <div class="mb-10px row row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-sm-2 justify-content-center">  
+                <div class="mb-10px row row-cols-1 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2">  
                     <% products.forEach(product => { %>
-                        <div class="d-flex mb-30px" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>
-                            <div class="col-4">
-                                <img src="<%= product.image %>" alt="" class="card-img-top">
-                            </div>
-                            <div class="col-8 pl-20px">
-                                <h6 class="text-white"><%= product.name %></h6>
-                                <p class="text-white">$ <%= product.price %></p>
+                        <div class="p-0 h-200px" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                            <div class="d-flex product-card p-1 m-10px align-items-center">
+                                <div class="col-4">
+                                    <img src="<%= product.image %>" alt="" class="card-img-top">
+                                </div>
+                                <div class="col-8 pl-20px">
+                                    <h6 class="text-white mb-0px"><%= product.name %></h6>
+                                    <p class="text-white mb-0">$ <%= product.price %></p>
+                                </div>
                             </div>
                         </div>
                     <% }) %>

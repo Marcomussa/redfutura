@@ -75,10 +75,10 @@
                             <div class="col-md-2">
                                 <h6 class="fw-600">Nombre</h6>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <h6 class="fw-600">Razon Social</h6>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <h6 class="fw-600">Direccion</h6>
                             </div>
                             <div class="col-md-2">
@@ -87,7 +87,200 @@
                             <div class="col-md-2">
                                 <h6 class="fw-600">Provincia</h6>
                             </div>
+                            <div class="col-md-2">
+                                <h6 class="fw-600">Opciones</h6>
+                            </div>
                         </div>
+
+                        <% members.forEach(member => { %>
+                            <div class="row mb-2 product-row">
+                                <div class="col-md-2 team-style-08">
+                                    <figure class="mb-0 position-relative">
+
+                                        <% if (member.image) { %>
+                                            <img src="<%= member.image %>" alt="<%= member.name %>" class="img-fluid border-radius-6px">
+                                            <% } else { %>
+                                            <p>No Image</p>
+                                        <% } %>
+
+                                        
+                                        <figcaption class="w-100 h-100 d-flex align-items-end p-12 lg-p-8 img-gradient border-radius-6px">
+                                            <div class="social-icon d-flex flex-column flex-shrink-1 w-100">
+                                                <button class="w-100 btn btn-medium btn-dark btn-hover-animation btn-round-edge btn-box-shadow" type="submit" data-target="#editarImagenMemberModal-<%= member._id %>" data-toggle="modal">
+                                                    <span>
+                                                        <span class="btn-text">Editar Imagen</span>
+                                                        <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-md-2 text-white align-self-center">
+                                    <p class="mb-0"><%= member.name %></p>
+                                </div>
+                                <div class="col-md-2 text-white align-self-center">
+                                    <p class="mb-0"><%= member.businessName & member.fantasyName %></p>
+                                </div>
+                                <div class="col-md-2 text-white align-self-center">
+                                    <p class="mb-0"><%= member.address %></p>
+                                </div>
+                                <div class="col-md-2 text-white align-self-center">
+                                    <p class="mb-0"><%= member.city %></p>
+                                </div>
+                                <div class="col-md-2 text-center d-flex justify-content-between align-items-center">
+                                    <button type="button" class="btn btn-primary w-30 fs-20" data-target="#expandirMemberModal-<%= member._id %>" data-toggle="modal">
+                                        <i class="ml-0px bi bi-arrows-angle-expand"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-success w-30" data-target="#editarMemberModal-<%= member._id %>" data-toggle="modal">
+                                        <i class="ml-0px bi bi-pencil-square"></i>
+                                    </button>
+                                    
+                                    <form method="POST" action="/admin/member/delete/<%= member._id %>" class="w-30">
+                                        <button type="submit" href="/" class="btn btn-danger w-100">
+                                            <i class="ml-0px bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="modal fade" id="editarMemberModal-<%= member._id %>" tabindex="-1" aria-labelledby="editarMemberModalLabel-<%= member._id %>" aria-hidden="true"  data-target=".bd-example-modal-lg">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editarMemberModalLabel">Editar <%= member.name %></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none;
+                                                border: none;
+                                                font-size: 40px;
+                                                color: red">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <form action="/admin/member/update/<%= member._id %>" method="POST">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label for=" text-primary">Nombre</label>
+                                                            <input type="text" class="form-control" name="name" value="<%= member.name %>">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="">Nombre de Negocio</label>
+                                                            <input type="text" class="form-control" name="category" value="<%= member.businessName %>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-20px">
+                                                        <div class="col-md-6">
+                                                            <label for="">Nombre de Fantasia</label>
+                                                            <input type="text" class="form-control" name="brand" value="<%= member.fantasyName %>">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="">Direccion</label>
+                                                            <input type="text" class="form-control" name="article" value="<%= member.address %>">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="row mt-20px">
+                                                        <div class="col-md-4">
+                                                            <label for="">Ciudad</label>
+                                                        <input type="text" class="form-control" name="supplier" value="<%= member.city %>">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="">Provincia</label>
+                                                            <input type="text" class="form-control" name="model" value="<%= member.province %>">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="">ZIP</label>
+                                                            <input type="text" class="form-control" name="model" value="<%= member.postalCode %>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group text-center">
+                                                        <button type="submit" class="btn btn-primary mt-10px w-65 pt-10px pb-10px" name="submit" value="submit">Guardar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="expandirMemberModal-<%= member._id %>" tabindex="-1" aria-labelledby="expandirMemberModal-<%= member._id %>" aria-hidden="true"  data-target=".bd-example-modal-lg">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="expandirMemberModalLabel">Detalles de <%= member.name %></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none;
+                                                border: none;
+                                                font-size: 40px;
+                                                color: red">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p>Nombre: <b><%= member.name %></b></p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p>Nombre de Negocio: <b><%= member.businessName %></b></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-20px">
+                                                    <div class="col-md-6">
+                                                        <p>Nombre de Fantasia: <b><%= member.fantasyName %></b></p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p>Direccion: <b><%= member.address %></b></p>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="row mt-20px">
+                                                    <div class="col-md-6">
+                                                        <p>Ciudad: <b><%= member.city %></b></p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p>Provincia: <b><%= member.province %></b></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-20px">
+                                                    <div class="col-md-12">
+                                                        <p>ZIP: <b><%= member.postalCode %></b></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="editarImagenMemberModal-<%= member._id %>" tabindex="-1" aria-labelledby="editarImagenMemberModal" aria-hidden="true"  data-target=".bd-example-modal-lg">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editarImagenProductoModalLabel">Editar Imagen de <%= member.name %></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: none;
+                                                border: none;
+                                                font-size: 40px;
+                                                color: red">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <form action="/admin/member/update-image/<%= member._id %>" method="POST" enctype="multipart/form-data"> 
+                                                    <div class="form-group mt-20px">
+                                                        <input type="file" class="form-control" name="image" accept="image/*">
+                                                    </div>
+                                                    <div class="form-group text-center">
+                                                        <button type="submit" class="btn btn-primary mt-10px w-65 pt-10px pb-10px" name="submit" value="submit">Guardar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
                     </div>
                 </div>
             </div>
@@ -110,65 +303,41 @@
                         <form action="/admin/integrantes/create" method="POST" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="nombreProducto">Nombre</label>
+                                    <label for="">Nombre</label>
                                     <input type="text" class="form-control" name="name">
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="nombreProducto">Nombre de Negocio</label>
+                                    <label for="">Nombre de Negocio</label>
                                     <input type="text" class="form-control" name="businessName">
                                 </div>
                             </div>
                             <div class="row mt-20px">
                                 <div class="col-md-6">
-                                    <label for="nombreProducto">Nombre de Fantasia</label>
+                                    <label for="">Nombre de Fantasia</label>
                                     <input type="text" class="form-control" name="fantasyName">
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="nombreProducto">Direccion</label>
+                                    <label for="">Direccion</label>
                                     <input type="text" class="form-control" name="address">
                                 </div>
                                 
                             </div>
                             <div class="row mt-20px">
                                 <div class="col-md-4">
-                                    <label for="nombreProducto">Ciudad</label>
+                                    <label for="">Ciudad</label>
                                     <input type="text" class="form-control" name="city">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="nombreProducto">Provincia</label>
-                                    <select id="provincia" name="province">
-                                        <option value="Buenos Aires">Buenos Aires</option>
-                                        <option value="Catamarca">Catamarca</option>
-                                        <option value="Chaco">Chaco</option>
-                                        <option value="Chubut">Chubut</option>
-                                        <option value="Córdoba">Córdoba</option>
-                                        <option value="Corrientes">Corrientes</option>
-                                        <option value="Entre Ríos">Entre Ríos</option>
-                                        <option value="Formosa">Formosa</option>
-                                        <option value="Jujuy">Jujuy</option>
-                                        <option value="La Pampa">La Pampa</option>
-                                        <option value="La Rioja">La Rioja</option>
-                                        <option value="Mendoza">Mendoza</option>
-                                        <option value="Misiones">Misiones</option>
-                                        <option value="Neuquén">Neuquén</option>
-                                        <option value="Río Negro">Río Negro</option>
-                                        <option value="Salta">Salta</option>
-                                        <option value="San Juan">San Juan</option>
-                                        <option value="San Luis">San Luis</option>
-                                        <option value="Santa Cruz">Santa Cruz</option>
-                                        <option value="Santa Fe">Santa Fe</option>
-                                        <option value="Santiago del Estero">Santiago del Estero</option>
-                                        <option value="Tierra del Fuego">Tierra del Fuego</option>
-                                        <option value="Tucumán">Tucumán</option>
-                                    </select>
+                                    <label for="">Provincia</label>
+                                    <input type="text" class="form-control" name="province">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="nombreProducto">ZIP</label>
+                                    <label for="">ZIP</label>
                                     <input type="text" class="form-control" name="postalCode">
                                 </div>
                             </div> 
                             <div class="form-group mt-20px">
-                                <label for="nombreProducto">Imagen</label>
+                                <label for="">Imagen</label>
                                 <input type="file" class="form-control" name="image" accept="image/*">
                             </div>
                             <div class="form-group text-center">

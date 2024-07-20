@@ -19319,3 +19319,19 @@ footer .footer-navbar .nav-item:last-child a {
   font-size: 19px !important;
   margin-left: 0px !important;
 }
+
+.product-card {
+  box-shadow: 6px 4px 10px -3px rgba(46,46,46,1);
+  background: #141414;
+  border-radius: 7px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-card img {
+  width: 150px;
+  height: 150px;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
