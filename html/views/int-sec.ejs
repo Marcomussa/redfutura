@@ -75,24 +75,45 @@
 </html>
 
 <script>
-    const map = L.map('map').setView([-38.4161, -63.6167], 5);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-// Define algunas ubicaciones en Argentina
-const locations = [
+const map = L.map('map').setView([-38.4161, -63.6167], 5)
+const locationsTest = [
     { name: "Buenos Aires", coords: [-34.6037, -58.3816] },
     { name: "Córdoba", coords: [-31.4201, -64.1888] },
     { name: "Rosario", coords: [-32.9468, -60.6393] },
     { name: "Mendoza", coords: [-32.8895, -68.8458] }
-];
+]
+let locations = []
 
-// Agrega pines para cada ubicación
-locations.forEach(location => {
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map)
+
+async function getLocations(){
+    const response = await fetch("http://localhost:3000/integrantes/get-coords")
+    const data = await response.json()
+
+    for(let i = 0; i < data.length; i++){
+        let member = {
+            name: "",
+            coords: [0,0]
+        }
+
+        member.name = data[i].name
+        member.coords[0] = Number(data[i].lat)
+        member.coords[1] = Number(data[i].lon)
+
+        locations.push(member)
+    }
+
+    locations.forEach(location => {
     L.marker(location.coords).addTo(map)
         .bindPopup(`<b>${location.name}</b>`)
         .openPopup();
-});
+    })
+
+    return data
+}
+getLocations()
+
 </script>

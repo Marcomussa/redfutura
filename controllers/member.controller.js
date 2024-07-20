@@ -87,9 +87,6 @@ async function addressToCoords (members){
             })
         }
     }
-    
-    console.log(coords)
-
     return coords
 }
 
@@ -112,7 +109,6 @@ async function coordsToAddress (lat, lon){
         return null;
     }
 }
-
 
 // MARCO TEST
 const storage = multer.diskStorage({
