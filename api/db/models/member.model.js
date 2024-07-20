@@ -34,6 +34,19 @@ const MemberSchema = new Schema(
       required: [true, 'Member address is required'],
       trim: true
     },
+    coordtinates: {
+      type: {
+        longitude: {
+          type: String,
+          required: [true, 'Member longitude is required']
+        },
+        latitude: {
+          type: String,
+          required: [true, 'Member latitude is required']
+        }
+      },
+      required: [true, 'Member coordinates are required']
+    },
     city: {
       type: String,
       required: [true, 'Member city is required'],

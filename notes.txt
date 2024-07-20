@@ -1,7 +1,0 @@
-Integrantes
-- Razon Social
-- ⁠Nombre Fantasia 
-- ⁠Direccion
-- ⁠Ciudad
-- ⁠Provincia
-- ⁠Codigo Postal
