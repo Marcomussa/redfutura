@@ -19,6 +19,30 @@ exports.getAllMembers = async (req, res) => {
     }
 }
 
+exports.updateMember = async (req, res) => {
+    const memberId = req.params.memberId;
+    const { body } = req;
+
+    try {
+        await service.updateMember(memberId, body);
+        return res.status(200).redirect("/admin/integrantes")
+    } catch (error) {
+        return res.status(400).json({ error: error.message })
+    }
+}   
+
+exports.updateMemberImage = async (req, res) => {
+    const memberId = req.params.memberId;
+    const { file } = req;
+
+    try {
+        await service.updateMemberImage(memberId, file);
+        return res.status(200).redirect("/admin/integrantes")
+    } catch (error) {
+        return res.status(400).json({ error: error.message })
+    }
+}
+
 exports.createMember = async (req, res) => {
     const { body, file } = req
 
@@ -32,6 +56,17 @@ exports.createMember = async (req, res) => {
         return res.status(400).json({
             error: error.message
         })
+    }
+}
+
+exports.deleteMember = async (req, res) => {
+    const memberId = req.params.memberId;
+
+    try {
+        await service.deleteMember(memberId);
+        return res.status(200).redirect("/admin/integrantes")
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
     }
 }
 

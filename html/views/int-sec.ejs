@@ -43,7 +43,11 @@
         <section class="bg-midnight-blue pt-0 half-section d-none d-md-block">
             <div class="container-fluid">
                 <div class="row d-flex justify-content-center">
-                    <div id="map" class="w-90"></div>
+                    <div class="col-md-12 p-0">
+                        <div id="map" class="w-100"></div>
+
+                    </div>
+                   
                 </div> 
             </div>
         </section>
@@ -76,7 +80,7 @@
 
 <script>
 
-const map = L.map('map').setView([-38.4161, -63.6167], 5)
+const map = L.map('map').setView([-38.4161, -63.6167], 4)
 const locationsTest = [
     { name: "Buenos Aires", coords: [-34.6037, -58.3816] },
     { name: "Córdoba", coords: [-31.4201, -64.1888] },

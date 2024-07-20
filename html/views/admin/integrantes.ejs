@@ -136,7 +136,7 @@
                                         <i class="ml-0px bi bi-pencil-square"></i>
                                     </button>
                                     
-                                    <form method="POST" action="/admin/member/delete/<%= member._id %>" class="w-30">
+                                    <form method="POST" action="/admin/integrantes/delete/<%= member._id %>" class="w-30">
                                         <button type="submit" href="/" class="btn btn-danger w-100">
                                             <i class="ml-0px bi bi-trash"></i>
                                         </button>
@@ -157,7 +157,7 @@
                                             </div>
                                             <div class="modal-body">
 
-                                                <form action="/admin/member/update/<%= member._id %>" method="POST">
+                                                <form action="/admin/integrantes/update/<%= member._id %>" method="POST">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <label for=" text-primary">Nombre</label>
@@ -165,32 +165,32 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="">Nombre de Negocio</label>
-                                                            <input type="text" class="form-control" name="category" value="<%= member.businessName %>">
+                                                            <input type="text" class="form-control" name="businessName" value="<%= member.businessName %>">
                                                         </div>
                                                     </div>
                                                     <div class="row mt-20px">
                                                         <div class="col-md-6">
                                                             <label for="">Nombre de Fantasia</label>
-                                                            <input type="text" class="form-control" name="brand" value="<%= member.fantasyName %>">
+                                                            <input type="text" class="form-control" name="fantasyName" value="<%= member.fantasyName %>">
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="">Direccion</label>
-                                                            <input type="text" class="form-control" name="article" value="<%= member.address %>">
+                                                            <input type="text" class="form-control" name="address" value="<%= member.address %>">
                                                         </div>
                                                         
                                                     </div>
                                                     <div class="row mt-20px">
                                                         <div class="col-md-4">
                                                             <label for="">Ciudad</label>
-                                                        <input type="text" class="form-control" name="supplier" value="<%= member.city %>">
+                                                        <input type="text" class="form-control" name="city" value="<%= member.city %>">
                                                         </div>
                                                         <div class="col-md-4">
                                                             <label for="">Provincia</label>
-                                                            <input type="text" class="form-control" name="model" value="<%= member.province %>">
+                                                            <input type="text" class="form-control" name="province" value="<%= member.province %>">
                                                         </div>
                                                         <div class="col-md-4">
                                                             <label for="">ZIP</label>
-                                                            <input type="text" class="form-control" name="model" value="<%= member.postalCode %>">
+                                                            <input type="text" class="form-control" name="postalCode" value="<%= member.postalCode %>">
                                                         </div>
                                                     </div>
                                                     <div class="form-group text-center">
@@ -266,7 +266,7 @@
                                             </div>
                                             <div class="modal-body">
 
-                                                <form action="/admin/member/update-image/<%= member._id %>" method="POST" enctype="multipart/form-data"> 
+                                                <form action="/admin/integrantes/update-image/<%= member._id %>" method="POST" enctype="multipart/form-data"> 
                                                     <div class="form-group mt-20px">
                                                         <input type="file" class="form-control" name="image" accept="image/*">
                                                     </div>
