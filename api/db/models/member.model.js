@@ -34,19 +34,6 @@ const MemberSchema = new Schema(
       required: [true, 'Member address is required'],
       trim: true
     },
-    coordtinates: {
-      type: {
-        longitude: {
-          type: String,
-          required: [true, 'Member longitude is required']
-        },
-        latitude: {
-          type: String,
-          required: [true, 'Member latitude is required']
-        }
-      },
-      required: [true, 'Member coordinates are required']
-    },
     city: {
       type: String,
       required: [true, 'Member city is required'],
@@ -62,6 +49,11 @@ const MemberSchema = new Schema(
     postalCode: {
       type: Number,
       required: [true, 'Member postal code is required'],
+    },
+    section: {
+      type: String,
+      required: [true, 'Member section is required'],
+      trim: true
     }
   },
   { timestamps: false, versionKey: false });

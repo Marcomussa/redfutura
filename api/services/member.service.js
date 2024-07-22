@@ -26,7 +26,7 @@ class MemberService {
       city,
       province,
       postalCode,
-      coordinates
+      section
     } = member;
 
     if (
@@ -37,9 +37,7 @@ class MemberService {
       !city ||
       !province ||
       !postalCode ||
-      !coordinates ||
-      !coordinates.longitude ||
-      !coordinates.latitude
+      !section
     ) {
       throw new Error('Please complete all fields')
     }
