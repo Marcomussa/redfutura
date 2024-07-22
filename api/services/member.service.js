@@ -36,8 +36,7 @@ class MemberService {
       !address ||
       !city ||
       !province ||
-      !postalCode ||
-      !section
+      !postalCode
     ) {
       throw new Error('Please complete all fields')
     }

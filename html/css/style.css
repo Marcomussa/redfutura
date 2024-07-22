@@ -5045,6 +5045,9 @@ input:focus, select:focus, textarea:focus, .form-control:focus {
 .ml-0px {
   margin-left: 0px !important;
 }
+.mr-10px {
+  margin-right: 10px !important;
+}
 .mt-5px {
   margin-top: 5px !important;
 }

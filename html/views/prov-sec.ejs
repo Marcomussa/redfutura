@@ -8,10 +8,8 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <meta name="description" content="">
         <!-- favicon icon -->
-        <link rel="shortcut icon" href="images/favicon.png">
-        <link rel="apple-touch-icon" href="images/apple-touch-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+        <link rel="shortcut icon" href="images/icon.png">
+
         <!-- google fonts preconnect -->
         <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,15 +24,14 @@
         <!-- start header -->
         <%- include('components/nav.ejs') %>
 
-        
-        <section class="page-title-big-typography bg-dark-gray ipad-top-space-margin" data-parallax-background-ratio="0.5" style="background-image: url(images/demo-conference-page-bg.jpg)">
-            <div class="container">
+        <section class="page-title-big-typography bg-dark-gray mb-0 pb-0 mt-0 pt-50px" data-parallax-background-ratio="0.5" style="background-image: url(images/demo-conference-page-bg.jpg)">
+            <div class="container pt-70px pb-50px xs-pb-0">
                 <div class="row align-items-center justify-content-center extra-small-screen">
-                    <div class="col-lg-8 text-center page-title-extra-large">
-                        <h1 class="mb-0 text-white alt-font fw-600 ls-minus-5px">
+                    <div class="col-lg-12 text-center page-title-extra-large">
+                        <h1 class="mb-10px text-white alt-font fw-600 ls-minus-5px">
                             <span class="d-block text-outline text-outline-width-2px text-outline-color-white" data-fancy-text='{ "string": ["Proveedores"], "duration": 500, "delay": 0, "speed": 50, "clipPath": ["inset(0 500px 0 0)", "inset(0px -5px 0px 0px)"], "easing": "easeOutCubic" }'></span>
-                            <span data-anime='{ "opacity": [0, 1], "easing": "easeOutQuad", "duration": 1000, "delay": 300 }'></span>
                         </h1>
+                        <span class="text-white fs-24" data-anime='{ "opacity": [0, 1], "easing": "easeOutQuad", "duration": 1000, "delay": 300 }'>Todo lo que buscas en un mismo lugar</span>
                     </div>
                 </div>
             </div>
@@ -51,16 +48,25 @@
         </section>
         <!-- end section -->
         <!-- start section -->
-        <section class="bg-midnight-blue pt-0 sm-pt-50px">
+        <section class="bg-midnight-blue pt-50px">
             <div class="container">
-                <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-sm-2 justify-content-center" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>  
-                    
-                    <div class="col text-center team-style-05 mb-50px"></div>
-                    
+                <div class="mb-10px row row-cols-1 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2">  
+                    <% supplier.forEach(supplier => { %>
+                        <div class="p-0 h-200px product-item-masVendidos" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                            <div class="d-flex product-card p-1 m-10px align-items-center">
+                                <div class="col-4">
+                                    <img src="<%= supplier.image %>" alt="" class="card-img-top">
+                                </div>
+                                <div class="col-8 pl-20px">
+                                    <h6 class="text-white mb-0px"><%= supplier.name %></h6>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
                 </div>
+              
             </div>
         </section>
-        
         <div class="scroll-progress d-none d-xxl-block">
             <a href="#" class="scroll-top" aria-label="scroll">
                 <span class="scroll-text">Scroll</span><span class="scroll-line"><span class="scroll-point"></span></span>

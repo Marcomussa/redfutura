@@ -8,10 +8,8 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <meta name="description" content="">
         <!-- favicon icon -->
-        <link rel="shortcut icon" href="images/favicon.png">
-        <link rel="apple-touch-icon" href="images/apple-touch-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+        <link rel="shortcut icon" href="images/icon.png">
+
         <!-- google fonts preconnect -->
         <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,9 +70,11 @@
        
         <section class="bg-midnight-blue pt-50px">
             <div class="container">
+                <h3 class="text-white">Destacados</h3>
                 <div class="mb-10px row row-cols-1 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2">  
-                    <% products.forEach(product => { %>
-                        <div class="p-0 h-200px" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                    <% products.forEach((product, index) => { %>
+                        <% if (product.section === 'destacados') { %>
+                        <div class="p-0 h-200px product-item-destacados" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }' <% if (index >= 6) { %> style="display: none;" <% } %> >
                             <div class="d-flex product-card p-1 m-10px align-items-center">
                                 <div class="col-4">
                                     <img src="<%= product.image %>" alt="" class="card-img-top">
@@ -85,7 +85,63 @@
                                 </div>
                             </div>
                         </div>
+                        <% } %>
                     <% }) %>
+                </div>
+                <div class="text-center">
+                    <button id="view-more-btn-destacados" class="btn btn-primary">Ver más</button>                 
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-midnight-blue pt-50px">
+            <div class="container">
+                <h3 class="text-white">Nuevos Ingresos</h3>
+                <div class="mb-10px row row-cols-1 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2">  
+                    <% products.forEach((product, index) => { %>
+                        <% if (product.section === 'nuevos-ingresos') { %>
+                        <div class="p-0 h-200px product-item-nuevosIngresos" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }' <% if (index >= 6) { %> style="display: none;" <% } %> >
+                            <div class="d-flex product-card p-1 m-10px align-items-center">
+                                <div class="col-4">
+                                    <img src="<%= product.image %>" alt="" class="card-img-top">
+                                </div>
+                                <div class="col-8 pl-20px">
+                                    <h6 class="text-white mb-0px"><%= product.name %></h6>
+                                    <p class="text-white mb-0">$ <%= product.price %></p>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                    <% }) %>
+                </div>
+                <div class="text-center">
+                    <button id="view-more-btn-nuevosIngresos" class="btn btn-primary">Ver más</button>                 
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-midnight-blue pt-50px">
+            <div class="container">
+                <h3 class="text-white">Mas Vendidos</h3>
+                <div class="mb-10px row row-cols-1 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2">  
+                    <% products.forEach((product, index) => { %>
+                        <% if (product.section === 'mas-vendidos') { %>
+                        <div class="p-0 h-200px product-item-masVendidos" data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }' <% if (index >= 6) { %> style="display: none;" <% } %> >
+                            <div class="d-flex product-card p-1 m-10px align-items-center">
+                                <div class="col-4">
+                                    <img src="<%= product.image %>" alt="" class="card-img-top">
+                                </div>
+                                <div class="col-8 pl-20px">
+                                    <h6 class="text-white mb-0px"><%= product.name %></h6>
+                                    <p class="text-white mb-0">$ <%= product.price %></p>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                    <% }) %>
+                </div>
+                <div class="text-center">
+                    <button id="view-more-btn-masVendidos" class="btn btn-primary">Ver más</button>                 
                 </div>
             </div>
         </section>
@@ -100,5 +156,36 @@
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/vendors.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
+        <script>
+            document.getElementById('view-more-btn-destacados').addEventListener('click', function() {
+                const productItems = document.querySelectorAll('.product-item-destacados');
+                productItems.forEach((item, index) => {
+                    if (index >= 6) {
+                        item.style.display = 'block';
+                    }
+                });
+                this.style.display = 'none'; // Ocultar el botón "Ver más" después de hacer clic
+            });
+
+            document.getElementById('view-more-btn-nuevosIngresos').addEventListener('click', function() {
+                const productItems = document.querySelectorAll('.product-item-nuevosIngresos');
+                productItems.forEach((item, index) => {
+                    if (index >= 6) {
+                        item.style.display = 'block';
+                    }
+                });
+                this.style.display = 'none'; // Ocultar el botón "Ver más" después de hacer clic
+            });
+
+            document.getElementById('view-more-btn-masVendidos').addEventListener('click', function() {
+                const productItems = document.querySelectorAll('.product-item-masVendidos');
+                productItems.forEach((item, index) => {
+                    if (index >= 6) {
+                        item.style.display = 'block';
+                    }
+                });
+                this.style.display = 'none'; // Ocultar el botón "Ver más" después de hacer clic
+            });
+        </script>
     </body>
 </html>

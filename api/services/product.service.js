@@ -31,7 +31,8 @@ class ProductService {
       eanCode,
       cost,
       price,
-      supplier
+      supplier,
+      section
     } = product;
 
     if (
@@ -44,7 +45,8 @@ class ProductService {
       !eanCode ||
       !cost ||
       !price ||
-      !supplier
+      !supplier || 
+      !section
     ) {
       throw new Error('Please complete all fields')
     }

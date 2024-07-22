@@ -6,9 +6,12 @@ const MemberRepository = require('../api/db/repositories/member.repository')
 const MemberService = require('../api/services/member.service')
 const service = new MemberService(MemberRepository)
 
+//todo: FindMemberByName
+
 exports.getAllMembers = async (req, res) => {
     try {
         const members = await service.getMembers()       
+        console.log(members)
         res.render('admin/integrantes', {
             members
         })

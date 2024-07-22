@@ -67,6 +67,11 @@ const ProductSchema = new Schema(
       type: Schema.Types.ObjectId,
       required:[true, 'Product supplier is required'],
       ref: 'Supplier'
+    },
+    section: {
+      type: String,
+      required: [true, 'Product section is required'],
+      trim: true
     }
   },
   { timestamps: false, versionKey: false });

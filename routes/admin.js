@@ -3,25 +3,30 @@ const router = express.Router()
 const { checkAuthenticated } = require('../middlewares/auth')
 const productController = require('../controllers/product.controller')
 const memberController = require('../controllers/member.controller')
+const supplierController = require("../controllers/supplier.controller")
 
 //! AUTH
 router.use(checkAuthenticated)
 
 //? GET //
 router.get('/', checkAuthenticated, (req, res) => res.render('admin/admin'))
-// Productos
+//! Productos
 router.get('/productos', checkAuthenticated, productController.getAllProducts)
 
 router.get('/productos/search', productController.findProductByName)
 
-// Integrantes
+//! Integrantes
 router.get('/integrantes', checkAuthenticated, memberController.getAllMembers)
 
-// Proveedores
-router.get('/proveedores', checkAuthenticated, (req, res) => res.render('admin/proveedores'))
+//todo: router.get('/integrantes/search', checkAuthenticated, memberController.findMemberByName)
+
+//! Proveedores
+router.get('/proveedores', checkAuthenticated, supplierController.getAllSuppliers)
+
+//todo: router.get('/proveedores/search', checkAuthenticated, memberController.findSupplierByName)
 
 //* POST *//
-// Productos
+//! Productos
 router.post('/productos/create', productController.upload.single('image'), productController.createProduct)
 
 router.post("/productos/delete/:productId", productController.deleteProduct)
@@ -30,14 +35,22 @@ router.post("/productos/update/:productId", productController.updateProduct)
 
 router.post("/productos/update-image/:productId",  productController.upload.single('image'), productController.updateProductImage)
 
-// Integrantes
+//! Integrantes
 router.post('/integrantes/create', memberController.upload.single('image'), memberController.createMember)
+
+router.post("/integrantes/delete/:memberId", memberController.deleteMember)
 
 router.post("/integrantes/update/:memberId", memberController.updateMember)
 
 router.post("/integrantes/update-image/:memberId", memberController.upload.single('image'), memberController.updateMemberImage)
 
-router.post("/integrantes/delete/:memberId", memberController.deleteMember)
-// Provedores
+//! Provedores
+router.post('/proveedores/create', supplierController.upload.single('image'), supplierController.createSupplier)
+
+router.post("/proveedores/delete/:supplierId", supplierController.deleteSupplier)
+
+router.post("/proveedores/update/:supplierId", supplierController.updateSupplier)
+
+router.post("/proveedores/update-image/:supplierId",  supplierController.upload.single('image'), supplierController.updateSupplierImage)
 
 module.exports = router

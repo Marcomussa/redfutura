@@ -49,11 +49,6 @@ const MemberSchema = new Schema(
     postalCode: {
       type: Number,
       required: [true, 'Member postal code is required'],
-    },
-    section: {
-      type: String,
-      required: [true, 'Member section is required'],
-      trim: true
     }
   },
   { timestamps: false, versionKey: false });

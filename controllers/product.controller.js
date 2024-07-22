@@ -38,6 +38,7 @@ exports.createProduct = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
     try {
         const products = await service.getProducts()
+        console.log(products)
         res.render("admin/productos", {
             products
         })
@@ -47,8 +48,10 @@ exports.getAllProducts = async (req, res) => {
 };
 
 exports.updateProduct = async (req, res) => {
-    const productId = req.params.productId;
-    const { body } = req;
+    const productId = req.params.productId
+    const { body } = req
+
+    console.log(body)
 
     try {
         await service.updateProduct(productId, body);
