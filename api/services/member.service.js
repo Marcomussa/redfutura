@@ -4,7 +4,6 @@ const CloudinaryService = require('./cloudinary.service');
 const { validateFile } = require('../utils/multer');
 const emptyUploadsDirectory = require('../utils/emptyUploadsDirectory');
 
-const TEST_DEFAULT_IMAGE = 'https://multipoint.com.ar/Image/0/750_750-A5.jpg';
 const CLOUDINARY_MEMBERS_FOLDER = 'members';
 
 class MemberService {
@@ -13,7 +12,10 @@ class MemberService {
     this._cloudinaryService = new CloudinaryService()
   }
 
-  async getMembers() {
+  async getMembers(name) {
+    if (name) {
+      return this._repository.findByName(name);
+    }
     return this._repository.findMany({});
   }
 
@@ -25,8 +27,7 @@ class MemberService {
       address,
       city,
       province,
-      postalCode,
-      section
+      postalCode
     } = member;
 
     if (

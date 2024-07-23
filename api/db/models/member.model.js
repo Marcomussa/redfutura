@@ -53,6 +53,9 @@ const MemberSchema = new Schema(
   },
   { timestamps: false, versionKey: false });
 
+MemberSchema.index({ name: 'text' })
+
+
 const MemberModel = model('Member', MemberSchema);
 
 module.exports = MemberModel;

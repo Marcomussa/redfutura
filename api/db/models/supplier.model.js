@@ -20,6 +20,9 @@ const SupplierSchema = new Schema(
   },
   { timestamps: false, versionKey: false });
 
+SupplierSchema.index({ name: 'text' })
+
+
 const SupplierModel = model('Supplier', SupplierSchema);
 
 module.exports = SupplierModel;

@@ -4,7 +4,6 @@ const CloudinaryService = require('./cloudinary.service');
 const { validateFile } = require('../utils/multer');
 const emptyUploadsDirectory = require('../utils/emptyUploadsDirectory');
 
-const TEST_DEFAULT_IMAGE = 'https://multipoint.com.ar/Image/0/750_750-A5.jpg';
 const CLOUDINARY_PRODUCTS_FOLDER = 'products';
 
 class ProductService {
@@ -15,7 +14,7 @@ class ProductService {
 
   async getProducts(name) {
     if (name) {
-      return this._repository.getProductByName(name);
+      return this._repository.findByName(name);
     }
     return this._repository.findMany({});
   }

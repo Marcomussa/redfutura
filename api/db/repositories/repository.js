@@ -26,6 +26,10 @@ class Repository {
     return obj;
   }
 
+  async findByName(name) {
+    return this.BaseModel.aggregate([{ $match: { $text: { $search: name } } }]);
+  }
+
   async findMany(filter) {
     let objs;
     try {
