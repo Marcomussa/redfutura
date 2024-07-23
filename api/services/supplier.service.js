@@ -87,12 +87,7 @@ class SupplierService {
     }
 
     try {
-      const deletedSupplier = await this._repository.deleteById(supplierId);
-
-      if (!deletedSupplier) {
-        throw new Error(`Supplier with id ${supplierId} does not exist`);
-      }
-
+      const deletedSupplier = await this._repository.deleteSupplierAndRelatedProducts(supplierId);
       await this._cloudinaryService.deleteImage(deletedSupplier.imageId);
     } catch (error) {
       throw error;
