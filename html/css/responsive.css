@@ -1181,6 +1181,18 @@
   }
 }
 @media (max-width: 575px) {
+  .xs-text-center {
+    text-align: center;
+  }
+  #view-more-btn-destacados,
+  #view-more-btn-nuevosIngresos,
+  #view-more-btn-masVendidos {
+    padding: 5px 30px;
+    font-size: 12px;
+  }
+  .xs-h-auto {
+    height: auto !important;
+  }
   /* Font size */
   .xs-fs-0 {
     font-size: 0;
