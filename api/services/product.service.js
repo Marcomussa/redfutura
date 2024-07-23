@@ -16,7 +16,7 @@ class ProductService {
     if (name) {
       return this._repository.findByName(name);
     }
-    return this._repository.findMany({});
+    return this._repository.findMany({}, { populate: 'supplier' });
   }
 
   validateProduct(product) {
@@ -44,7 +44,7 @@ class ProductService {
       !eanCode ||
       !cost ||
       !price ||
-      !supplier || 
+      !supplier ||
       !section
     ) {
       throw new Error('Please complete all fields')

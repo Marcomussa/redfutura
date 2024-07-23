@@ -1,5 +1,9 @@
 const handleMongoError = require('../utils/handleMongoError');
 
+const { ProductModel } = require('../models/product.model');
+const { SupplierModel } = require('../models/supplier.model');
+const { MemberModel } = require('../models/member.model');
+
 class Repository {
   BaseModel;
   modelName;
@@ -13,7 +17,7 @@ class Repository {
     let obj;
 
     try {
-      obj = await this.BaseModel.findById(objectId).select(options?.fields).populate(options?.populate).lean();
+      obj = await this.BaseModel.findById(objectId).select(options?.fields).populate(options?.populate);
     } catch (error) {
       handleMongoError(error)
       obj = null;
@@ -27,13 +31,23 @@ class Repository {
   }
 
   async findByName(name) {
-    return this.BaseModel.aggregate([{ $match: { $text: { $search: name } } }]);
+    return this.BaseModel.aggregate([
+      { $match: { $text: { $search: name } } },
+      {
+        $lookup: {
+          from: 'suppliers',
+          localField: 'supplier',
+          foreignField: '_id',
+          as: 'supplier'
+        }
+      }
+    ]);
   }
 
-  async findMany(filter) {
+  async findMany(filter, options) {
     let objs;
     try {
-      objs = await this.BaseModel.find(filter)
+      objs = await this.BaseModel.find(filter).populate(options?.populate)
     } catch (error) {
       console.log(`WARNING: There was an error while finding ${this.modelName}s`);
       objs = [];
