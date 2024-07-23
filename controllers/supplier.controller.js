@@ -4,7 +4,20 @@ const SupplierRepository = require('../api/db/repositories/supplier.repository')
 const SupplierService = require('../api/services/supplier.service');
 const service = new SupplierService(SupplierRepository);
 
-//todo: FindSupplierByName
+exports.findSupplierByName = async (req, res) => {
+    const { supplier } = req.query
+    try {
+        const result = await service.getSuppliers(supplier)
+        return res.render("admin/proveedores", {
+            suppliers: [],
+            result
+        })
+    } catch (error) {
+        return res.status(400).json({
+            error: error.message
+        })
+    }
+}
 
 exports.createSupplier = async (req, res) => {
     const { body, file } = req;

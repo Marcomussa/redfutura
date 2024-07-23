@@ -18,12 +18,12 @@ router.get('/productos/search', productController.findProductByName)
 //! Integrantes
 router.get('/integrantes', checkAuthenticated, memberController.getAllMembers)
 
-//todo: router.get('/integrantes/search', checkAuthenticated, memberController.findMemberByName)
+router.get('/integrantes/search', checkAuthenticated, memberController.findMemberByName)
 
 //! Proveedores
 router.get('/proveedores', checkAuthenticated, supplierController.getAllSuppliers)
 
-//todo: router.get('/proveedores/search', checkAuthenticated, memberController.findSupplierByName)
+router.get('/proveedores/search', checkAuthenticated, supplierController.findSupplierByName)
 
 //* POST *//
 //! Productos
