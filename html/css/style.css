@@ -42,6 +42,19 @@ Table of contents
   --primary-font: "Inter", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth !important;
+}
+
+.navbar-background {
+  background-color: rgba(0,0,0,0.8) !important;
+}
+
+#navbar {
+  position: fixed;
+  top: 0;
+}
+
 /* ===================================
     02. CSS color variable
 ====================================== */
@@ -19346,4 +19359,8 @@ footer .footer-navbar .nav-item:last-child a {
 
 .supplier-card:hover {
   transform: translateY(-5px);
+}
+
+.navbar img {
+  max-width: 70% !important;
 }

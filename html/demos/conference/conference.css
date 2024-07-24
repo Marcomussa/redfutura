@@ -27,11 +27,7 @@ body {
     border-radius: 6px;
 }
 /* header */
-.sticky .header-transparent .header-button .btn { 
-    background-color: transparent;
-    border-color: var(--dark-gray);
-    color: var(--dark-gray);
-}
+
 .sticky .header-transparent .header-button .btn:hover {
     background-color: var(--dark-gray);
     color: var(--white);

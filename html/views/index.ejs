@@ -22,7 +22,43 @@
     </head>
     <body data-mobile-nav-style="classic">  
         <!-- start header -->
-        <%- include('components/nav.ejs') %>
+        <header> 
+            <!-- start navigation -->
+            <nav class="navbar navbar-expand-lg header-transparent bg-transparent disable-fixed" id="navbar">
+                <div class="container-fluid">
+                    <div class="col-auto col-lg-2 me-lg-0 me-auto">
+                        <a class="navbar-brand" href="/">
+                            <img src="../images/logo-red-white.png" data-at2x="../images/logo-red-white.png" alt="" class="default-logo">
+                            <img src="../images/logo-red-white.png" data-at2x="../images/logo-red-white.png" alt="" class="alt-logo">
+                            <img src="" data-at2x="" alt="" class="mobile-logo"> 
+                        </a>
+                    </div>
+                    <div class="col-auto menu-order position-static">
+                        <button class="navbar-toggler float-start" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-line"></span>
+                            <span class="navbar-toggler-line"></span>
+                            <span class="navbar-toggler-line"></span>
+                            <span class="navbar-toggler-line"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav"> 
+                            <ul class="navbar-nav alt-font ls-05px">
+                                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                                <li class="nav-item"><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                                <li class="nav-item"><a href="#acerca-de" class="nav-link">Acerca De</a></li>
+                                <li class="nav-item"><a href="/productos" class="nav-link">Productos</a></li>
+                                <li class="nav-item"><a href="/integrantes" class="nav-link">Integrantes</a></li>
+                                <li class="nav-item"><a href="/proveedores" class="nav-link">Proveedores</a></li> 
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-auto col-lg-2 text-end xs-ps-0 xs-pe-0">
+                        <div class="header-icon"> 
+                            <div class="header-button"><a href="/contacto" class="btn btn-small text-transform-none btn-transparent-white-light border-1 left-icon btn-rounded fw-500"><i class="feather icon-feather-mail d-none d-xl-inline-block"></i>Contacto</a></div>
+                        </div>  
+                    </div>
+                </div>
+            </nav>
+        </header>
 
         <!-- end header --> 
         <!-- start section -->
@@ -48,7 +84,7 @@
                                     <span class="btn-icon"><i class="fa-solid fa-arrow-right"></i></span> 
                                 </span>
                             </a>
-                            <a href="demo-conference-registration.html" class="btn btn-extra-large btn-base-color btn-hover-animation btn-rounded btn-box-shadow align-self-center lg-mt-20px sm-mt-5px xs-mt-20px" data-anime='{ "opacity": [0, 1], "translateY": [50, 0], "easing": "easeOutCubic", "duration": 1000, "delay": 800 }'>
+                            <a href="#main" class="btn btn-extra-large btn-base-color btn-hover-animation btn-rounded btn-box-shadow align-self-center lg-mt-20px sm-mt-5px xs-mt-20px" data-anime='{ "opacity": [0, 1], "translateY": [50, 0], "easing": "easeOutCubic", "duration": 1000, "delay": 800 }'>
                                 <span>
                                     <span class="btn-text">Conocé Mas</span> 
                                     <span class="btn-icon"><i class="fa-solid fa-arrow-right"></i></span> 
@@ -64,7 +100,7 @@
         </section>
         <!-- end section -->
         <section class="bg-dark-midnight-blue overlap-height border-top border-color-transparent-white-light background-position-left-top background-no-repeat md-background-image-none" style="background-image: url('images/demo-conference-experts-bg.png')">
-            <div class="container overlap-gap-section">
+            <div class="container overlap-gap-section" id="main">
                 <div class="row align-items-center justify-content-center text-center mb-2" data-anime='{ "translateY": [50, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>
                     <div class="col-lg-8">
                         <h4 class="alt-font text-white fw-500 ls-minus-2px"><span class="w-20px h-4px d-inline-block bg-base-color me-10px"></span>
@@ -168,7 +204,7 @@
         <!-- start section --> 
         <section class="bg-dark-midnight-blue background-position-right-top background-no-repeat md-background-image-none" style="background-image: url('images/demo-conference-about-bg.png')">
            
-            <div class="container">
+            <div class="container" id="nosotros">
                 <h2 class="alt-font text-white fw-500 ls-minus-2px mb-40px sm-mb-30px">
                     <span class="w-20px h-4px d-inline-block bg-base-color me-10px"></span>
                     Somos la Red de Compras de mayor crecimiento en los últimos años.
@@ -243,7 +279,7 @@
                     </div>
                 </div> 
             </div>
-            <div class="container">
+            <div class="container" id="acerca-de">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-md-6" data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>
                         <h4 class="alt-font text-white fw-500 ls-minus-2px mb-40px sm-mb-30px">
@@ -487,6 +523,7 @@
         </div>
         <!-- end scroll progress -->
         <!-- javascript libraries -->
+        <script type="text/javascript" src="js/nav.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/vendors.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
