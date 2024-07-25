@@ -84,7 +84,7 @@ router.delete('/products/:productId', deleteProduct);
 // SUPPLIERS
 const getAllSuppliers = async (req, res) => {
   try {
-    const suppliers = await supplierService.getSuppliers();
+    const suppliers = await supplierService.getSuppliers(req.query?.name);
     return res.status(200).json(suppliers);
   } catch (error) {
     return res.status(500).json(error);
@@ -148,7 +148,7 @@ router.delete('/suppliers/:supplierId', deleteSupplier);
 // MEMBERS
 const getAllMembers = async (req, res) => {
   try {
-    const members = await memberService.getMembers();
+    const members = await memberService.getMembers(req.query?.name);
     return res.status(200).json(members);
   } catch (error) {
     return res.status(500).json(error);
