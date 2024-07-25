@@ -52,7 +52,7 @@ app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/upload', uploadRouter);
 app.use('/api', apiRouter);
-
+app.get('*', (req, res) => res.render('404'))
 
 // Passport configuration and user setup
 const users = [];
