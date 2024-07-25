@@ -38,7 +38,6 @@ exports.createProduct = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
     try {
         const products = await service.getProducts()
-        console.log(products)
         res.render("admin/productos", {
             products
         })

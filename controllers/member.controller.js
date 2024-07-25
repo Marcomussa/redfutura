@@ -7,9 +7,9 @@ const MemberService = require('../api/services/member.service')
 const service = new MemberService(MemberRepository)
 
 exports.findMemberByName = async (req, res) => {
-    const { member } = req.query
+    const { integrante } = req.query
     try {
-        const result = await service.getMembers(member)
+        const result = await service.getMembers(integrante)
         return res.render("admin/integrantes", {
             members: [],
             result

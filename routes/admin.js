@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { checkAuthenticated } = require('../middlewares/auth')
+const { checkAuthenticated, authenticate } = require('../middlewares/auth')
 const productController = require('../controllers/product.controller')
 const memberController = require('../controllers/member.controller')
 const supplierController = require("../controllers/supplier.controller")

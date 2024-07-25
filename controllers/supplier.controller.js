@@ -5,9 +5,9 @@ const SupplierService = require('../api/services/supplier.service');
 const service = new SupplierService(SupplierRepository);
 
 exports.findSupplierByName = async (req, res) => {
-    const { supplier } = req.query
+    const { proveedor } = req.query
     try {
-        const result = await service.getSuppliers(supplier)
+        const result = await service.getSuppliers(proveedor)
         return res.render("admin/proveedores", {
             suppliers: [],
             result
