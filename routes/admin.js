@@ -9,21 +9,21 @@ const supplierController = require("../controllers/supplier.controller")
 router.use(checkAuthenticated)
 
 //? GET //
-router.get('/', checkAuthenticated, (req, res) => res.render('admin/admin'))
+router.get('/', (req, res) => res.render('admin/admin'))
 //! Productos
-router.get('/productos', checkAuthenticated, productController.getAllProducts)
+router.get('/productos', productController.getAllProducts)
 
 router.get('/productos/search', productController.findProductByName)
 
 //! Integrantes
-router.get('/integrantes', checkAuthenticated, memberController.getAllMembers)
+router.get('/integrantes', memberController.getAllMembers)
 
-router.get('/integrantes/search', checkAuthenticated, memberController.findMemberByName)
+router.get('/integrantes/search', memberController.findMemberByName)
 
 //! Proveedores
-router.get('/proveedores', checkAuthenticated, supplierController.getAllSuppliers)
+router.get('/proveedores', supplierController.getAllSuppliers)
 
-router.get('/proveedores/search', checkAuthenticated, supplierController.findSupplierByName)
+router.get('/proveedores/search', supplierController.findSupplierByName)
 
 //* POST *//
 //! Productos
@@ -33,7 +33,7 @@ router.post("/productos/delete/:productId", productController.deleteProduct)
 
 router.post("/productos/update/:productId", productController.updateProduct)
 
-router.post("/productos/update-image/:productId",  productController.upload.single('image'), productController.updateProductImage)
+router.post("/productos/update-image/:productId", productController.upload.single('image'), productController.updateProductImage)
 
 //! Integrantes
 router.post('/integrantes/create', memberController.upload.single('image'), memberController.createMember)
@@ -51,6 +51,6 @@ router.post("/proveedores/delete/:supplierId", supplierController.deleteSupplier
 
 router.post("/proveedores/update/:supplierId", supplierController.updateSupplier)
 
-router.post("/proveedores/update-image/:supplierId",  supplierController.upload.single('image'), supplierController.updateSupplierImage)
+router.post("/proveedores/update-image/:supplierId", supplierController.upload.single('image'), supplierController.updateSupplierImage)
 
 module.exports = router
