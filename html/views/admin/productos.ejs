@@ -181,7 +181,11 @@
                                                             <div class="row mt-20px">
                                                                 <div class="col-md-6">
                                                                     <label for="nombreProducto">Vendedor</label>
-                                                                <input type="text" class="form-control" name="supplier" value="<%= product.supplier %>">
+                                                                    <select class="form-control" name="supplier">
+                                                                        <% suppliers.forEach(supplier => { %>
+                                                                            <option value="<%= supplier._id %>" <%= String(supplier._id) == String(product.supplier._id) ? 'selected' : '' %>><%= supplier.name %> </option>
+                                                                        <% }) %>
+                                                                    </select>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <label for="nombreProducto">Modelo</label>
@@ -422,7 +426,11 @@
                                                         <div class="row mt-20px">
                                                             <div class="col-md-6">
                                                                 <label for="nombreProducto">Vendedor</label>
-                                                            <input type="text" class="form-control" name="supplier" value="<%= product.supplier %>">
+                                                                    <select class="form-control" name="supplier">
+                                                                    <% suppliers.forEach(supplier => { %>
+                                                                        <option value="<%= supplier._id %>" <%= String(supplier._id) == String(product.supplier._id) ? 'selected' : '' %>><%= supplier.name %> </option>
+                                                                    <% }) %>
+                                                                    </select>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label for="nombreProducto">Nombre</label>
@@ -503,7 +511,7 @@
                                                         </div>
                                                         <div class="row mt-20px">
                                                             <div class="col-md-6">
-                                                                <p>Vendedor: <b><%= product.supplier %></b></p>
+                                                                <p>Vendedor: <b><%= product.supplier.name %></b></p>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <p>Modelo: <b><%= product.model %></b></p>
@@ -609,7 +617,11 @@
                             <div class="row mt-20px">
                                 <div class="col-md-6">
                                     <label for="nombreProducto">Vendedor</label>
-                                <input type="text" class="form-control" name="supplier">
+                                    <select class="form-control">
+                                    <% suppliers.forEach(supplier => { %>
+                                        <option value="<%= supplier.id %>"><%= supplier.name %></option>
+                                    <% }) %>
+                                    </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="nombreProducto">Modelo</label>

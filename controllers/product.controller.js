@@ -1,16 +1,21 @@
 const multer = require('multer');
 const path = require('path');
-
 const ProductRepository = require('../api/db/repositories/product.repository');
 const ProductService = require('../api/services/product.service');
 const service = new ProductService(ProductRepository);
+
+const SupplierRepository = require('../api/db/repositories/supplier.repository');
+const SupplierService = require('../api/services/supplier.service');
+const serviceSup = new SupplierService(SupplierRepository);
 
 exports.findProductByName = async (req, res) => {
     const { product } = req.query
     try {
         const result = await service.getProducts(product)
+        const suppliers = await serviceSup.getSuppliers()
         return res.render("admin/productos", {
             products: [],
+            suppliers,
             result
         })
     } catch (error) {
@@ -37,9 +42,12 @@ exports.createProduct = async (req, res) => {
 
 exports.getAllProducts = async (req, res) => {
     try {
+        const suppliers = await serviceSup.getSuppliers()
         const products = await service.getProducts()
+        console.log(suppliers)
         res.render("admin/productos", {
-            products
+            products,
+            suppliers
         })
     } catch (error) {
         return res.status(500).json({ error: error.message });
