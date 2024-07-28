@@ -194,14 +194,11 @@
                             <div class="row mb-2 product-row">
                                 <div class="col-md-2 team-style-08">
                                     <figure class="mb-0 position-relative">
-
                                         <% if (supplier.image) { %>
                                             <img src="<%= supplier.image %>" alt="<%= supplier.name %>" class="img-fluid border-radius-6px">
                                             <% } else { %>
                                             <p>No Image</p>
                                         <% } %>
-
-                                        
                                         <figcaption class="w-100 h-100 d-flex align-items-end p-12 lg-p-8 img-gradient border-radius-6px">
                                             <div class="social-icon d-flex flex-column flex-shrink-1 w-100">
                                                 <button class="w-100 btn btn-medium btn-dark btn-hover-animation btn-round-edge btn-box-shadow" type="submit" data-target="#editarImagenProveedorModal-<%= supplier._id %>" data-toggle="modal">
@@ -217,19 +214,16 @@
                                 <div class="col-md-2 text-white align-self-center">
                                     <p class="mb-0"><%= supplier.name %></p>
                                 </div>
-                               
                                 <div class="col-md-2 text-center d-flex align-items-center">
                                     <button type="button" class="btn btn-success w-30 mr-10px" data-target="#editarProveedoresModal-<%= supplier._id %>" data-toggle="modal">
                                         <i class="ml-0px bi bi-pencil-square"></i>
                                     </button>
-                                    
                                     <form method="POST" action="/admin/proveedores/delete/<%= supplier._id %>" class="w-30">
                                         <button type="submit" href="/" class="btn btn-danger w-100">
                                             <i class="ml-0px bi bi-trash"></i>
                                         </button>
                                     </form>
                                 </div>
-
                                 <div class="modal fade" id="editarImagenProveedorModal-<%= supplier._id %>" tabindex="-1" aria-labelledby="editarImagenProveedorModal-<%= supplier._id %>" aria-hidden="true"  data-target=".bd-example-modal-lg">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -243,7 +237,6 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-
                                                 <form action="/admin/proveedores/update-image/<%= supplier._id %>" method="POST" enctype="multipart/form-data"> 
                                                     <div class="form-group mt-20px">
                                                         <input type="file" class="form-control" name="image" accept="image/*">
@@ -253,7 +246,6 @@
                                                     </div>
                                                 </form>
                                             </div>
-                                          
                                         </div>
                                     </div>
                                 </div>
@@ -271,24 +263,21 @@
                                                   </button>
                                             </div>
                                             <div class="modal-body">
-
                                                 <form action="/admin/proveedores/update/<%= supplier._id %>" method="POST">
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <label for="nombreProducto text-primary">Nombre</label>
                                                             <input type="text" class="form-control" name="name" value="<%= supplier.name %>">
                                                         </div>
+                                                    </div>
                                                     <div class="form-group text-center">
                                                         <button type="submit" class="btn btn-primary mt-10px w-65 pt-10px pb-10px" name="submit" value="submit">Guardar</button>
                                                     </div>
                                                 </form>
                                             </div>
-                                          
                                         </div>
                                     </div>
                                 </div>
-                        
-
                             </div>
                         <% }) %>
                     </div>
