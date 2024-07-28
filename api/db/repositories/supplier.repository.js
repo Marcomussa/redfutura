@@ -32,6 +32,10 @@ class SupplierRepository extends Repository {
       throw error;
     }
   }
+
+  async findSupplierByName(name) {
+    return SupplierModel.findOne({ name });
+  }
 }
 
 module.exports = SupplierRepository;

@@ -42,6 +42,17 @@ const createProduct = async (req, res) => {
 };
 router.post('/products', upload.single('image'), createProduct);
 
+const createManyProducts = async (req, res) => {
+  const { file } = req;
+  try {
+    await productService.createManyProducts(file);
+    return res.status(200).json({ msg: 'OK' });
+  } catch (error) {
+    return res.status(400).json({ error: error.message })
+  }
+};
+router.post('/products/many', upload.single('products'), createManyProducts);
+
 const updateProduct = async (req, res) => {
   const productId = req.params.productId;
   const { body } = req;

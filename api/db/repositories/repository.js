@@ -49,7 +49,6 @@ class Repository {
     try {
       objs = await this.BaseModel.find(filter).populate(options?.populate)
     } catch (error) {
-      console.log(`WARNING: There was an error while finding ${this.modelName}s`);
       objs = [];
     }
 

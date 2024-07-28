@@ -9,6 +9,10 @@ class ProductRepository extends Repository {
   async deleteMany(filter) {
     await ProductModel.deleteMany(filter);
   }
+
+  async createMany(products) {
+    await ProductModel.create(products);
+  }
 }
 
 module.exports = ProductRepository;

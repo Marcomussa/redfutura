@@ -27,15 +27,12 @@ class CloudinaryService {
       return { publicId: response.public_id, url: response.url };
 
     } catch (error) {
-      // TODO: Internal Server error
-      console.log('ERROR:', error);
       throw error;
     }
   }
 
   async deleteImage(publicId) {
     if (!publicId) {
-      // TODO
       console.log('WARNING: No publicId provided to delete image from Cloudinary')
       return;
     }

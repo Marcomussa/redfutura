@@ -7,11 +7,6 @@ const handleMongoError = (error) => {
     throw new Error(`Duplicate key value: ${error.keyValue}`);
   }
 
-  if (error instanceof Error.CastError) {
-    // TODO
-    console.log('WARNING: Cast Error ocurred');
-  }
-
   if (error instanceof Error.ValidationError) {
     throw new Error(error.message);
   }

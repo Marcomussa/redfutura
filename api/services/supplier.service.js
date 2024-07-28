@@ -13,7 +13,6 @@ class SupplierService {
   }
 
   async getSuppliers(name) {
-    console.log('NAME: ', name);
     if (name) {
       return this._repository.findByName(name);
     }
