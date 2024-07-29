@@ -56,7 +56,7 @@ class ProductService {
       throw new Error('Please complete all fields')
     }
 
-    if (typeof cost != 'number' || typeof price != 'number') {
+    if (typeof Number(cost) != 'number' || typeof Number(price) != 'number') {
       throw new Error('Cost and Price must be in number format')
     }
   }
