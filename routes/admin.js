@@ -35,6 +35,8 @@ router.post("/productos/update/:productId", productController.updateProduct)
 
 router.post("/productos/update-image/:productId", productController.upload.single('image'), productController.updateProductImage)
 
+router.post("/productos/upload", productController.uploadExcel.single('file'), productController.createManyProducts)
+
 //! Integrantes
 router.post('/integrantes/create', memberController.upload.single('image'), memberController.createMember)
 

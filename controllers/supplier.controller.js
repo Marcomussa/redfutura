@@ -19,6 +19,21 @@ exports.findSupplierByName = async (req, res) => {
     }
 }
 
+exports.createManySuppliers = async (req, res) => {
+    const { file } = req
+    try {
+        await service.createManySuppliers({
+            file
+        })
+        return res.status(200).redirect("/admin/proveedores")
+    } catch (error) {
+        console.log(error)
+        return res.status(400).json({
+            error: error.message
+        })
+    }
+}
+
 exports.createSupplier = async (req, res) => {
     const { body, file } = req;
     try {
@@ -80,7 +95,6 @@ exports.deleteSupplier = async (req, res) => {
     }
 };
 
-// MARCO TEST
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads/');
@@ -102,6 +116,22 @@ const upload = multer({
         }
         cb(new Error('Solo se permiten archivos de imagen'));
     }
+})
+
+const storageExcel = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/') // Carpeta donde se guardarán los archivos
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9) + path.extname(file.originalname)
+        cb(null, file.fieldname + '-' + uniqueSuffix)
+    }
 });
+
+const uploadExcel = multer({
+    storage: storageExcel
+})
+
+exports.uploadExcel = uploadExcel
 
 exports.upload = upload;

@@ -25,6 +25,21 @@ exports.findProductByName = async (req, res) => {
     }
 }
 
+exports.createManyProducts = async (req, res) => {
+    const { file } = req
+    try {
+        await service.createManyProducts({
+            file
+        })
+        return res.status(200).redirect("/admin/productos")
+    } catch (error) {
+        console.log(error)
+        return res.status(400).json({
+            error: error.message
+        })
+    }
+}
+
 exports.createProduct = async (req, res) => {
     const { body, file } = req;
     try {
@@ -44,7 +59,6 @@ exports.getAllProducts = async (req, res) => {
     try {
         const suppliers = await serviceSup.getSuppliers()
         const products = await service.getProducts()
-        console.log(suppliers)
         res.render("admin/productos", {
             products,
             suppliers
@@ -57,9 +71,6 @@ exports.getAllProducts = async (req, res) => {
 exports.updateProduct = async (req, res) => {
     const productId = req.params.productId
     const { body } = req
-
-    console.log(body)
-
     try {
         await service.updateProduct(productId, body);
         return res.status(200).redirect("/admin/productos")
@@ -113,6 +124,22 @@ const upload = multer({
         }
         cb(new Error('Solo se permiten archivos de imagen'));
     }
+})
+
+const storageExcel = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/') // Carpeta donde se guardarán los archivos
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9) + path.extname(file.originalname)
+        cb(null, file.fieldname + '-' + uniqueSuffix)
+    }
 });
+
+const uploadExcel = multer({
+    storage: storageExcel
+})
+
+exports.uploadExcel = uploadExcel
 
 exports.upload = upload;

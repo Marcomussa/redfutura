@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           Swal.fire({
             title: "¡Ha ocurrido un error!",
-            text: "Contactese con info@dreamlabs.com.ar",
+            text: "Error",
             icon: "error",
             confirmButtonText: "Listo",
           });

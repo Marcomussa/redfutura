@@ -1,4 +1,5 @@
 const xlsx = require('xlsx');
+const path = require("path")
 
 const ProductRepository = require('../db/repositories/product.repository');
 const SupplierRepository = require('../db/repositories/supplier.repository');
@@ -151,8 +152,9 @@ class ProductService {
   }
 
   async createManyProducts(file) {
-    const { path } = file;
-    const workbook = xlsx.readFile(path)
+    const excel = file.file 
+    const filePath = path.join(__dirname, '../../', excel.path)
+    const workbook = xlsx.readFile(filePath)
 
     try {
       const products = await this.validateWorkbook(workbook);
@@ -162,7 +164,6 @@ class ProductService {
       emptyUploadsDirectory();
       throw error;
     }
-
   }
 
   async updateProduct(productId, product) {
