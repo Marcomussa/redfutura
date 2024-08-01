@@ -617,7 +617,7 @@
                             <div class="row mt-20px">
                                 <div class="col-md-6">
                                     <label for="nombreProducto">Vendedor</label>
-                                    <select class="form-control">
+                                    <select class="form-control" name="supplier">
                                     <% suppliers.forEach(supplier => { %>
                                         <option value="<%= supplier.id %>"><%= supplier.name %></option>
                                     <% }) %>
