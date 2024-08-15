@@ -9,8 +9,8 @@ const { validateFile } = require('../utils/multer');
 const emptyUploadsDirectory = require('../utils/emptyUploadsDirectory');
 
 const CLOUDINARY_PRODUCTS_FOLDER = 'products';
-const NO_IMAGE_URL = 'https://res.cloudinary.com/dw6ri09rd/image/upload/v1722170457/products/no_image_qxtmba.jpg';
-const NO_IMAGE_ID = 'no_image_qxtmba';
+const NO_IMAGE_URL = 'https://res.cloudinary.com/dw6ri09rd/image/upload/v1723734104/images_v9pb0g.png';
+const NO_IMAGE_ID = '';
 
 class ProductService {
   constructor() {
@@ -26,7 +26,7 @@ class ProductService {
     return this._repository.findMany({}, { populate: 'supplier' });
   }
 
-  validateProduct(product) {
+  async validateProduct(product) {
     const {
       name,
       category,
@@ -37,7 +37,7 @@ class ProductService {
       eanCode,
       cost,
       price,
-      supplier,
+      supplier: supplierName,
       section
     } = product;
 
@@ -51,7 +51,7 @@ class ProductService {
       !eanCode ||
       !cost ||
       !price ||
-      !supplier ||
+      !supplierName ||
       !section
     ) {
       throw new Error('Please complete all fields')
@@ -60,13 +60,33 @@ class ProductService {
     if (typeof Number(cost) != 'number' || typeof Number(price) != 'number') {
       throw new Error('Cost and Price must be in number format')
     }
+
+    const supplier = await this._supplierRepository.findSupplierByName(supplierName);
+    if (!supplier) {
+      throw new Error(`No supplier with name ${supplierName}`);
+    }
+
+    return {
+      name,
+      category,
+      brand,
+      article,
+      model,
+      sku,
+      eanCode,
+      cost,
+      price,
+      supplier: supplier._id,
+      section
+    }
   }
 
-  async createProduct(product) {
-    const { file } = product;
+  async createProduct(bodyProduct) {
+    const { file } = bodyProduct;
+    let product = {};
 
     try {
-      this.validateProduct(product);
+      product = await this.validateProduct(bodyProduct);
       validateFile(file);
 
       const { publicId, url } = await this._cloudinaryService.uploadImage(file.path, CLOUDINARY_PRODUCTS_FOLDER, product.name);
@@ -86,7 +106,7 @@ class ProductService {
     }
   }
 
-  async parseWorkbookToProduct(products) {
+  parseWorkbookToProduct(products) {
     const parsedProducts = [];
 
     for (const product of products) {
@@ -105,11 +125,6 @@ class ProductService {
         seccion
       } = product;
 
-      const supplier = await this._supplierRepository.findSupplierByName(proveedor);
-      if (!supplier) {
-        throw new Error(`No supplier with name ${proveedor}`);
-      }
-
       const parsedProduct = {
         name: nombre,
         category: categoria,
@@ -121,7 +136,7 @@ class ProductService {
         description: descripcion,
         cost: costo,
         price: precio,
-        supplier: supplier._id,
+        supplier: proveedor,
         section: seccion,
         image: NO_IMAGE_URL,
         imageId: NO_IMAGE_ID
@@ -139,22 +154,23 @@ class ProductService {
       throw new Error('File must have exactly one sheet');
     }
 
-
     const sheet = sheetsNames[0];
     const sheetProducts = xlsx.utils.sheet_to_json(sheets[sheet]);
-    const products = await this.parseWorkbookToProduct(sheetProducts);
+    const workbookProducts = this.parseWorkbookToProduct(sheetProducts);
+    const products = [];
 
-    products.forEach((prod) => {
-      this.validateProduct(prod);
-    });
+    for (const prod of workbookProducts) {
+      const product = await this.validateProduct(prod)
+      product.image = NO_IMAGE_URL
+      product.imageId = NO_IMAGE_ID
+      products.push(product)
+    }
 
     return products;
   }
 
   async createManyProducts(file) {
-    const excel = file.file 
-    const filePath = path.join(__dirname, '../../', excel.path)
-    const workbook = xlsx.readFile(filePath)
+    const workbook = xlsx.readFile(file.path)
 
     try {
       const products = await this.validateWorkbook(workbook);
