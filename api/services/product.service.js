@@ -226,7 +226,7 @@ class ProductService {
         throw new Error(`Product with id ${productId} does not exist`);
       }
 
-      if (deletedProduct.imageId != imageId) {
+      if (deletedProduct.imageId != NO_IMAGE_ID) {
         await this._cloudinaryService.deleteImage(deletedProduct.imageId);
       }
     } catch (error) {
