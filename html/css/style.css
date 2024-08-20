@@ -35,11 +35,12 @@ Table of contents
 /* ===================================
     01. Google font
 ====================================== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap");
 :root {
-  --alt-font: "Plus Jakarta Sans", sans-serif;
-  --primary-font: "Inter", sans-serif;
+  --alt-font: "Montserrat", sans-serif;
+  --primary-font: "Montserrat", sans-serif;
 }
 
 html {
@@ -47,7 +48,7 @@ html {
 }
 
 .navbar-background {
-  background-color: rgba(0,0,0,0.8) !important;
+  background-color: rgba(0,0,0,0.9) !important;
 }
 
 #navbar {
@@ -3613,6 +3614,9 @@ input:focus, select:focus, textarea:focus, .form-control:focus {
 }
 .border-color-transparent-white-light {
   border-color: rgba(255, 255, 255, 0.1) !important;
+}
+.border-color-red {
+  border-color: #dc3131 !important;
 }
 .border-color-transparent-white {
   border-color: rgba(255, 255, 255, 0.6) !important;
@@ -8993,7 +8997,7 @@ button:focus {
   box-shadow: none;
 }
 .navbar-toggler-line {
-  background: var(--dark-gray);
+  background: white;
   height: 2px;
   width: 22px;
   content: "";
@@ -19362,5 +19366,5 @@ footer .footer-navbar .nav-item:last-child a {
 }
 
 .navbar img {
-  max-width: 70% !important;
+  max-width: 100% !important;
 }

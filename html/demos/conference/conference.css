@@ -2,14 +2,14 @@
     Crafto - Conference
 ====================================== */
 /* font */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 /* variable */
 :root {     
-    --base-color: #d90a2c; 
+    --base-color: #bc2e2e; 
     --dark-gray: #2b2b2f;
     --medium-gray: #7a777e;
-    --alt-font: 'DM Sans', sans-serif;
-    --primary-font: 'DM Sans', sans-serif;
+    --alt-font: 'Montserrat', sans-serif;
+    --primary-font: 'Montserrat', sans-serif;
 }  
 /* reset */
 body { 
@@ -74,12 +74,24 @@ header .btn.btn-rounded.btn-small {
 .bg-gradient-black-transparent {
     background: linear-gradient(306deg, rgba(0,0,0,0.5) 0%, rgba(240,244,253,0) 55%);
 }
+
+.btn-cta-color {
+    background: none;
+    border: 2px solid white;
+    color: white;
+}
+.btn-cta-color:hover {
+    background: none;
+    border: 2px solid white;
+    color: white;
+}
+
 /* bg color */
 .bg-midnight-blue {
-    background-color: #1c1c1f;
+    background-color: #f4eded;
 }
 .bg-dark-midnight-blue {
-    background-color: #17161a;
+    background-color: #f4eded;
 } 
 /* bg color transparent */
 .bg-base-color-transparent {

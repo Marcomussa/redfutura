@@ -42,6 +42,7 @@ exports.createManyProducts = async (req, res) => {
 
 exports.createProduct = async (req, res) => {
     const { body, file } = req;
+    console.log(body)
     try {
         await service.createProduct({
             ...body,

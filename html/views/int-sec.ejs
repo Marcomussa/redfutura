@@ -24,19 +24,34 @@
     <body data-mobile-nav-style="classic">  
         <!-- start header -->
         <%- include('components/nav.ejs') %>
-        
         <section class="page-title-big-typography bg-dark-gray mb-0 pb-0 mt-0 pt-50px" data-parallax-background-ratio="0.5" style="background-image: url(images/demo-conference-page-bg.jpg)">
-            <div class="container pt-70px pb-50px xs-pb-0 xs-pt-30px">
-                <div class="row align-items-center justify-content-center extra-small-screen">
-                    <div class="col-lg-12 text-center page-title-extra-large">
+            <div class="container pt-125px  xs-pb-0 xs-pt-100px">
+                <div class="row align-items-center justify-content-center pb-40px xs-pb-20px">
+                    <div class="col-md-12 text-center page-title-extra-large">
                         <h1 class="mb-10px text-white alt-font fw-600 ls-minus-5px">
-                            <span class="d-block text-outline text-outline-width-2px text-outline-color-white" data-fancy-text='{ "string": ["Integrantes"], "duration": 500, "delay": 0, "speed": 50, "clipPath": ["inset(0 500px 0 0)", "inset(0px -5px 0px 0px)"], "easing": "easeOutCubic" }'></span>
+                            <span data-anime='{ "opacity": [0, 1], "easing": "easeOutQuad", "duration": 1000, "delay": 300 }'>Integrantes</span>
                         </h1>
                         <span class="text-white fs-24 xs-fs-20" data-anime='{ "opacity": [0, 1], "easing": "easeOutQuad", "duration": 1000, "delay": 300 }'>Somos un grupo de mas de 100 integrantes en todo el pais</span>
+                        
                     </div>
+                    <!-- <div class="col-md-12 text-center">
+                        <input class="input-name input-search w-70" type="text" name="email" placeholder="Buscar Producto/s" />
+                            <button class="btn-search btn btn-dark-gray btn-hover-animation btn-round-edge btn-box-shadow " type="submit">
+                            <i class="bi bi-search text-white"></i>
+                        </button> 
+                    </div> -->
+                </div>
+                <div class="row align-items-center justify-content-center pb-30px">
+                    <a href="/contacto" class="btn btn-extra-large btn-cta-color btn-hover-animation btn-rounded btn-box-shadow align-self-center lg-mt-20px sm-mt-5px xs-mt-20px" data-anime='{ "opacity": [0, 1], "translateY": [50, 0], "easing": "easeOutCubic", "duration": 1000, "delay": 800 }'>
+                        <span>
+                            <span class="btn-text">Contactanos</span> 
+                            <span class="btn-icon"><i class="fa-solid fa-arrow-right"></i></span> 
+                        </span>
+                    </a>
                 </div>
             </div>
         </section>
+        
 
         <section class="bg-midnight-blue pt-0 pb-0">
             <div class="container-fluid">
